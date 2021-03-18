@@ -1,0 +1,174 @@
+<?php
+
+use App\Reservation;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+Route::get('/code', function(){
+    dd(Hash::make('labo'));
+});
+
+Route::get('/callendar/{stade}', function($stade){
+    $reservations =Reservation::where('stade',$stade)->get();
+    switch ($stade) {
+        case '1':
+            $color = 'bg-info';
+            break;
+        case '2':
+            $color = 'bg-success';
+            break;    
+        case '3':
+            $color = 'bg-primary';
+            break;    
+    }
+    return view('callendar',compact('reservations','stade','color'));
+})->name('callendar');
+
+
+Route::group(['prefix' => 'produit', 'as' => 'produit'], function () {
+    Route::get('/', ['as' => '.index', 'uses' => 'ProduitController@index']);
+    Route::get('/create',['as'=>'.create', 'uses' => 'ProduitController@create']);
+    Route::post('/create', ['as' => '.store', 'uses' => 'ProduitController@store']);
+    Route::get('/destroy/{id_demande}', ['as' => '.destroy', 'uses' => 'ProduitController@destroy']); 
+    Route::get('/edit/{id_demande}', ['as' => '.edit', 'uses' => 'ProduitController@edit']);
+    Route::post('/update/{produit}', ['as' => '.update', 'uses' => 'ProduitController@update']);    
+});
+
+Route::group(['prefix' => 'item', 'as' => 'item'], function () {
+    Route::get('/', ['as' => '.index', 'uses' => 'ItemController@index']);
+    Route::get('/create',['as'=>'.create', 'uses' => 'ItemController@create']);
+    Route::post('/create', ['as' => '.store', 'uses' => 'ItemController@store']);
+    Route::get('/destroy/{id_demande}', ['as' => '.destroy', 'uses' => 'ItemController@destroy']); 
+    Route::get('/edit/{id_demande}', ['as' => '.edit', 'uses' => 'ItemController@edit']);
+    Route::post('/update/{item}', ['as' => '.update', 'uses' => 'ItemController@update']);    
+});
+
+
+Route::group(['prefix' => 'facture', 'as' => 'facture'], function () {
+    Route::get('/', ['as' => '.index', 'uses' => 'FactureController@index']);
+    Route::get('/create',['as'=>'.create', 'uses' => 'FactureController@create']);
+    Route::get('/print/{facture}',['as'=>'.print', 'uses' => 'FactureController@print']);
+    Route::post('/create', ['as' => '.store', 'uses' => 'FactureController@store']);
+    Route::post('/calculer', ['as' => '.calculer', 'uses' => 'FactureController@calculer']);
+    
+    Route::get('/destroy/{id_demande}', ['as' => '.destroy', 'uses' => 'FactureController@destroy']); 
+    Route::get('/stock/{id_demande}', ['as' => '.stock', 'uses' => 'FactureController@stock']); 
+    Route::get('/edit/{id_demande}', ['as' => '.edit', 'uses' => 'FactureController@edit']);
+    Route::get('/show/{id_facture}', ['as' => '.show', 'uses' => 'FactureController@show']);
+    Route::post('/update/{facture}', ['as' => '.update', 'uses' => 'FactureController@update']);    
+
+});
+
+
+Route::group(['prefix' => 'analyse', 'as' => 'analyse'], function () {
+    Route::get('/', ['as' => '.index', 'uses' => 'AnalyseController@index']);
+    Route::get('/create',['as'=>'.create', 'uses' => 'AnalyseController@create']);
+    Route::post('/create', ['as' => '.store', 'uses' => 'AnalyseController@store']);
+    Route::get('/destroy/{id_demande}', ['as' => '.destroy', 'uses' => 'AnalyseController@destroy']); 
+    Route::get('/stock/{id_demande}', ['as' => '.stock', 'uses' => 'AnalyseController@stock']); 
+    Route::get('/edit/{id_demande}', ['as' => '.edit', 'uses' => 'AnalyseController@edit']);
+    Route::get('/print/{id_analyse}', ['as' => '.print', 'uses' => 'AnalyseController@print']);
+    Route::post('/update/{analyse}', ['as' => '.update', 'uses' => 'AnalyseController@update']);    
+});
+
+
+Route::group(['prefix' => 'stock', 'as' => 'stock'], function () {
+    Route::get('/', ['as' => '.index', 'uses' => 'StockController@index']);
+    Route::get('/create',['as'=>'.create', 'uses' => 'StockController@create']);
+    Route::post('/create', ['as' => '.store', 'uses' => 'StockController@store']);
+    Route::get('/destroy/{id_demande}', ['as' => '.destroy', 'uses' => 'StockController@destroy']); 
+    Route::get('/stock/{id_demande}', ['as' => '.stock', 'uses' => 'StockController@stock']); 
+    Route::get('/edit/{id_demande}', ['as' => '.edit', 'uses' => 'StockController@edit']);
+    Route::get('/print/{id_analyse}', ['as' => '.print', 'uses' => 'StockController@print']);
+    Route::post('/update/{stock}', ['as' => '.update', 'uses' => 'StockController@update']);    
+});
+
+
+Route::group(['prefix' => 'operateur', 'as' => 'operateur'], function () {
+    Route::get('/', ['as' => '.index', 'uses' => 'OperateurController@index']);
+    Route::get('/create',['as'=>'.create', 'uses' => 'OperateurController@create']);
+    Route::post('/create', ['as' => '.store', 'uses' => 'OperateurController@store']);
+    Route::get('/destroy/{id_demande}', ['as' => '.destroy', 'uses' => 'OperateurController@destroy']); 
+    Route::get('/stock/{id_demande}', ['as' => '.stock', 'uses' => 'OperateurController@stock']); 
+    Route::get('/edit/{id_demande}', ['as' => '.edit', 'uses' => 'OperateurController@edit']);
+    Route::get('/show/{id_operateur}', ['as' => '.show', 'uses' => 'OperateurController@show']);
+    Route::post('/update/{operateur}', ['as' => '.update', 'uses' => 'OperateurController@update']);    
+});
+
+Route::group(['prefix' => 'setting', 'as' => 'setting'], function () {
+    Route::get('/', ['as' => '.index', 'uses' => 'SettingController@index']);
+    Route::get('/create',['as'=>'.create', 'uses' => 'SettingController@create']);
+    Route::post('/create', ['as' => '.store', 'uses' => 'SettingController@store']);
+    Route::get('/destroy/{id_demande}', ['as' => '.destroy', 'uses' => 'SettingController@destroy']); 
+    Route::get('/edit/{id_demande}', ['as' => '.edit', 'uses' => 'SettingController@edit']);
+    Route::get('/show/{id_setting}', ['as' => '.show', 'uses' => 'SettingController@show']);
+    Route::post('/update/{setting}', ['as' => '.update', 'uses' => 'SettingController@update']);    
+});
+
+Route::group(['prefix' => 'inscription', 'as' => 'inscription'], function () {
+    Route::get('/', ['as' => '.index', 'uses' => 'inscriptionController@index']);
+    Route::get('/presence/{inscription}', ['as' => '.presence', 'uses' => 'inscriptionController@presence']);
+    
+    Route::get('/create',['as'=>'.create', 'uses' => 'inscriptionController@create']);
+    Route::post('/create', ['as' => '.store', 'uses' => 'inscriptionController@store']);
+    Route::get('/destroy/{id_demande}', ['as' => '.destroy', 'uses' => 'inscriptionController@destroy']); 
+    Route::get('/edit/{id_demande}', ['as' => '.edit', 'uses' => 'inscriptionController@edit']);
+    Route::post('/update/{inscription}', ['as' => '.update', 'uses' => 'inscriptionController@update']);    
+});
+
+Route::group(['prefix' => 'membre', 'as' => 'membre'], function () {
+    Route::get('/', ['as' => '.index', 'uses' => 'MembreController@index']);
+    Route::get('/inscriptions/{membre}', ['as' => '.inscriptions', 'uses' => 'MembreController@inscriptions']);
+    Route::get('/create',['as'=>'.create', 'uses' => 'MembreController@create']);
+    Route::post('/create', ['as' => '.store', 'uses' => 'MembreController@store']);
+    Route::get('/destroy/{id_demande}', ['as' => '.destroy', 'uses' => 'MembreController@destroy']); 
+    Route::get('/state/{id_demande}', ['as' => '.state', 'uses' => 'MembreController@state']); 
+    Route::get('/edit/{id_demande}', ['as' => '.edit', 'uses' => 'MembreController@edit']);
+    Route::post('/update/{membre}', ['as' => '.update', 'uses' => 'MembreController@update']);    
+    
+});
+
+Route::group(['prefix' => 'abonnement', 'as' => 'abonnement'], function () {
+    Route::get('/', ['as' => '.index', 'uses' => 'AbonnementController@index']);
+    Route::get('/show/create',['as'=>'.show.create', 'uses' => 'AbonnementController@create']);
+    Route::post('/create', ['as' => '.create', 'uses' => 'AbonnementController@store']);
+    Route::post('/update', ['as' => '.update', 'uses' => 'AbonnementController@update']);
+    Route::get('/destroy/{id_abonnement}', ['as' => '.destroy', 'uses' => 'AbonnementController@destroy']);    
+    Route::get('/edit/{id_abonnement}', ['as' => '.edit', 'uses' => 'AbonnementController@edit']);
+});
+
+Route::get('/', function(){
+    return redirect()->route('login.admin');
+});
+
+Auth::routes();
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm')->name('login.admin');
+Route::get('/login/livreur', 'Auth\LoginController@showLivreurLoginForm')->name('login.Livreur');
+Route::get('/login/fournisseur', 'Auth\LoginController@showFournisseurLoginForm')->name('login.Fournisseur');
+Route::get('/login/freelancer', 'Auth\LoginController@showFreelancerLoginForm')->name('login.Freelancer');
+Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm')->name('register.admin');
+Route::get('/register/livreur', 'Auth\RegisterController@showLivreurRegisterForm')->name('register.Livreur');
+
+Route::post('/login/admin', 'Auth\LoginController@adminLogin');
+Route::post('/login/livreur', 'Auth\LoginController@livreurLogin');
+Route::post('/login/fournisseur', 'Auth\LoginController@fournisseurLogin');
+Route::post('/login/freelancer', 'Auth\LoginController@freelancerLogin');
+Route::post('/register/admin', 'Auth\RegisterController@createAdmin')->name('register.admin');
+Route::post('/register/livreur', 'Auth\RegisterController@createLivreur')->name('register.Livreur');
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth:admin'], function () {
+    Route::view('/admin', 'admin');
+});
+
