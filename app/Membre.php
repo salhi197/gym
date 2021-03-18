@@ -43,7 +43,16 @@ class Membre extends Model
             $reste =$inscription->reste;
             $current = date('Y-m-d');
             if($current>$fin or $reste==0){
-                return 0;
+                $lastpresence = Presence::where('membre',$this->id)->last();
+                $hour=date('H:i');
+                /**
+                 * check if last presnce is more then 6 hours
+                 */
+                if ($lastpresence-$hour >6) {
+                    return 1;
+                }else{
+                    return 0;
+                }
             }
             return 1;
         }

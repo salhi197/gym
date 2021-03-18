@@ -15,6 +15,7 @@ class CreatePresencesTable extends Migration
     {
         Schema::create('presences', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('inscription');
             $table->timestamps();
         });
     }

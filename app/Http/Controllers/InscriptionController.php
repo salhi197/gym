@@ -12,15 +12,14 @@ class InscriptionController extends Controller
 {
     public function index()
     {
-        $inscriptions = Inscription::all();
-        
+        $inscriptions = Inscription::all();        
         return view('inscriptions.presences',compact('inscriptions'));
     }
 
     
-    public function presence($presence_id)
+    public function presence($inscription_id)
     {
-        $presences = "";//Presence::where('inscription',$presence_id)->get();
+        $presences = Presence::where('inscription',$inscription_id)->get();
         return view('inscriptions.presences',compact('presences'));
     }
     public function store(Request $request)

@@ -1,25 +1,19 @@
 
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gestion Salle du sport</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{asset('adminlte/plugins/fontawesome-free/css/all.min.css')}}">
-  <link href="{{asset('adminlte/plugins/toastr/toastr.css')}}" rel="stylesheet" />
-  <link rel="stylesheet" href="{{asset('adminlte/dist/css/adminlte.min.css')}}">
-  <link rel="stylesheet" href="{{asset('adminlte/plugins/fullcalendar/main.css')}}">
+<meta charset='utf-8' />
+<link href="{{asset('css/fullcalendar.css')}}" rel='stylesheet' />
+<link href="{{asset('css/fullcalendar.print.css')}}" rel='stylesheet' media='print' />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="{{asset('adminlte/plugins/fontawesome-free/css/all.min.css')}}">
+<link href="{{asset('adminlte/plugins/toastr/toastr.css')}}" rel="stylesheet" />
+<link rel="stylesheet" href="{{asset('adminlte/dist/css/adminlte.min.css')}}">
 
 </head>
 <body class="hold-transition layout-top-nav">
+
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -44,7 +38,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="{{route('abonnement.index')}}" class="nav-link">Abonnement</a>
           </li>
           <li class="nav-item">
-            <a href="{{route('abonnement.index')}}" class="nav-link">Inscriptions</a>
+            <a href="{{route('inscription.index')}}" class="nav-link">Inscriptions</a>
           </li>
           <li class="nav-item">
             <a href="{{route('abonnement.index')}}" class="nav-link">Paramètres</a>
@@ -56,49 +50,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </ul>
 
         <!-- SEARCH FORM -->
-        <!-- <form class="form-inline ml-0 ml-md-3">
-          <div class="input-group input-group-sm">
-            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-              <button class="btn btn-navbar" type="submit">
-                <i class="fas fa-search"></i>
-              </button>
-            </div>
-          </div>
-        </form> -->
       </div>
 
       <!-- Right navbar links -->
-      <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-        <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-header">15 Notifications</span>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-envelope mr-2"></i> 4 new messages
-              <span class="float-right text-muted text-sm">3 mins</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-users mr-2"></i> 8 friend requests
-              <span class="float-right text-muted text-sm">12 hours</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-file mr-2"></i> 3 new reports
-              <span class="float-right text-muted text-sm">2 days</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-            <i class="fas fa-th-large"></i>
-          </a>
-        </li>
-      </ul>
+
     </div>
   </nav>
   <!-- /.navbar -->
@@ -106,7 +61,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    @yield('header')
     <!-- /.content-header -->
 
     <!-- Main content -->
@@ -114,16 +68,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-              <div class="card">
-                  <div class="card-body">
-                      <h4 class="card-title">
-                          Liste de presence 
-                      </h4>
-                      <div id="calendar"></div>
-
-
-                  </div>
-              </div>
+            <div class="card">
+                <div class="card-body">
+                <div id='calendar'></div>
+                </div>
+            </div>
           </div>
         </div>
         <!-- /.row -->
@@ -133,14 +82,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </div>
   <!-- /.content-wrapper -->
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
-    </div>
-  </aside>
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
@@ -153,106 +94,176 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io"></a>.</strong> 
   </footer>
 </div>
-<!-- ./wrapper -->
 
-<script src="{{asset('adminlte/plugins/jquery/jquery.min.js')}}"></script>
-<script src="{{asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('adminlte/dist/js/adminlte.min.js')}}"></script>
-<script src="{{asset('adminlte/dist/js/demo.js')}}"></script>
-<script src="{{asset('adminlte/plugins/toastr/toastr.min.js')}}"></script>
 
-<script src="{{asset('adminlte/plugins/fullcalendar/main.js')}}"></script>
-<script>
-
-$(document).ready(function() {
-		$('#calendar').fullCalendar({
-			header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,agendaWeek,agendaDay,listWeek'
-			},
-			defaultDate: '2016-09-12',
-			navLinks: true, // can click day/week names to navigate views
-			editable: true,
-			eventLimit: true, // allow "more" link when too many events
-			events: [
-				{
-					title: 'All Day Event',
-					start: '2016-09-01'
-				},
-				{
-					title: 'Long Event',
-					start: '2016-09-07',
-					end: '2016-09-10'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2016-09-09T16:00:00'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2016-09-16T16:00:00'
-				},
-				{
-					title: 'Conference',
-					start: '2016-09-11',
-					end: '2016-09-13'
-				},
-				{
-					title: 'Meeting',
-					start: '2016-09-12T10:30:00',
-					end: '2016-09-12T12:30:00'
-				},
-				{
-					title: 'Lunch',
-					start: '2016-09-12T12:00:00'
-				},
-				{
-					title: 'Meeting',
-					start: '2016-09-12T14:30:00'
-				},
-				{
-					title: 'Happy Hour',
-					start: '2016-09-12T17:30:00'
-				},
-				{
-					title: 'Dinner',
-					start: '2016-09-12T20:00:00'
-				},
-				{
-					title: 'Birthday Party',
-					start: '2016-09-13T07:00:00'
-				},
-				{
-					title: 'Click for Google',
-					url: 'http://google.com/',
-					start: '2016-09-28'
-				}
-			]
-		});
-		
-	});
-</script>
-<script>
-        @if(session('success'))
-            $(function(){
-                toastr.success('{{Session::get("success")}}')
-            })
-        @endif
-        @if ($errors->any())
-            $(function(){
-                @foreach ($errors->all() as $error)
-                        toastr.error('{{$error}}')
-                @endforeach
-            })
-        @endif
-        @if(session('error'))
-            $(function(){
-                toastr.error('{{Session::get("error")}}')
-            })
-        @endif
-</script>
 </body>
 </html>
+<script src="{{asset('js/moment.min.js')}}"></script>
+<script src="{{asset('js/jquery.min.js')}}"></script>
+<script src="{{asset('js/fullcalendar.min.js')}}"></script>
+<script src="{{asset('js/locale-all.js')}}"></script>
+
+<script>
+
+! function($) {
+
+
+
+"use strict";
+$('b').hide()
+$('br').hide()
+
+var CalendarApp = function() {
+    this.$body = $("body")
+    this.$calendar = $('#calendar'),
+    this.$event = ('#calendar-events div.calendar-events'),
+    this.$categoryForm = $('#add-new-event form'),
+    this.$extEvents = $('#calendar-events'),
+    this.$modal = $('#my-event'),
+    this.$saveCategoryBtn = $('.save-category'),
+    this.$calendarObj = null
+};
+
+
+/* on drop */
+    CalendarApp.prototype.enableDrag = function() {
+        //init events
+        $(this.$event).each(function() {
+            // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+            // it doesn't need to have a start or end
+            var eventObject = {
+                title: $.trim($(this).text()) // use the element's text as the event title
+            };
+            // store the Event Object in the DOM element so we can get to it later
+            $(this).data('eventObject', eventObject);
+            // make the event draggable using jQuery UI
+            $(this).draggable({
+                zIndex: 999,
+                revert: true, // will cause the event to go back to its
+                revertDuration: 0 //  original position after the drag
+            });
+        });
+    }
+/* Initializing */
+CalendarApp.prototype.init = function() {
+        this.enableDrag();
+        /*  Initialize the calendar  */
+        var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
+        var form = '';
+        var today = new Date($.now());
+        var defaultEvents = [];
+        var beofreoneweek = new Date(Date.now() + 604800000);
+        var event,evt;
+        var today = new Date();
+        var prevweek = new Date(today.getFullYear(), today.getMonth(), today.getDate()-7);
+        console.log(beofreoneweek)
+        
+
+        
+
+        var evts = [{"id":53,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-03-30","state":"0","abonnement":"9"},{"id":52,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-03-23","state":"0","abonnement":"9"},{"id":51,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-03-16","state":"0","abonnement":"9"},{"id":58,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-05-04","state":"0","abonnement":"9"},{"id":55,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-04-13","state":"0","abonnement":"9"},{"id":54,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-04-06","state":"0","abonnement":"9"},{"id":29,"created_at":"2021-02-24 16:45:49","updated_at":"2021-02-24 16:45:49","fullname":"merounae","phone":"3456789","stade":"1","prix":"6000","crenau":"9","date":"2021-03-04","state":"0","abonnement":null},{"id":30,"created_at":"2021-02-24 16:46:10","updated_at":"2021-02-24 16:46:10","fullname":"uta","phone":"890","stade":"1","prix":"6000","crenau":"10","date":"2021-03-04","state":"0","abonnement":null},{"id":56,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-04-20","state":"0","abonnement":"9"},{"id":57,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-04-27","state":"0","abonnement":"9"}];
+        for(evt of evts){
+            var dc= evt['crenau']
+            var fc= parseInt(evt['crenau'])+1         
+            var color = "bg-danger";       
+            dc = parseInt(dc)
+            if(evt['abonnement']){
+                color = "bg-warning";
+            }
+            if(dc<10){
+                dc="0"+dc
+            }
+            if(fc<10){
+                fc="0"+fc
+            }
+            if(evt['state'] == 1){
+                color = "bg-success"
+            }
+            event = {
+                id:evt['id'],
+                title: evt["fullname"],
+                start: evt['date']+'T'+dc+':00:00',
+                end: evt['date']+'T'+fc+':00:00',
+                _eventdate:evt['eventdate'],
+                _crenau:evt['crenau'],
+                _eventdate:evt['date'],
+                _fullname:evt['fullname'],
+                _phone:evt['phone'],
+                _prix:evt['prix'],
+                className: color
+
+            },
+            defaultEvents.push(event)
+        }
+        console.log(defaultEvents)
+
+        var $this = this;
+        $this.$calendarObj = $this.$calendar.fullCalendar({
+            slotDuration: '01:00:00',
+            defaultView: 'agendaWeek',
+            defaultDate: prevweek,
+            handleWindowResize: true,
+            header: {
+                left: 'prev,next today',
+                right: 'agendaWeek,agendaDay'
+            },
+            titleFormat: '2021',
+            allDaySlot: false,
+            locale: 'fr', // the initial locale. of not specified, uses the first one
+            events: defaultEvents,
+            droppable: true, 
+            eventLimit: true, 
+            selectable: true,
+            eventRender: function (event, element) {
+                element.find('.fc-title').html(event.title);/*For Month,Day and Week Views*/
+                element.find('.fc-list-item-title').html(event.title);/*For List view*/
+            },                
+            drop: function(date) { $this.onDrop($(this), date); },
+            select: function(start, end, allDay) { 
+                console.log(start._i)
+                var month = parseInt(start._i[1]+1)
+                var crenau = parseInt(start._i[3])
+                var day = start._i[2]
+                if(month<10){
+                    month ='0'+month
+                }
+                if(day<10){
+                    day ='0'+day
+                }
+                var d = start._i[0]+'-'+month+'-'+day;      
+                console.log(start)              
+                console.log(d)              
+                $('#eventdate').val(d)
+                $('#crenau').val(crenau)
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+                today = yyyy+'-'+ mm + '-' + dd;
+                console.log(d, today)
+                if(d == today || d > today){
+                    $('#fullCalModal').modal();
+                }
+             },
+            eventClick: function(calEvent, jsEvent, view) { 
+                console.log(calEvent)
+                var id = calEvent.id
+                $('#showEvent'+id).modal();
+            }
+        });
+    },
+    $.CalendarApp = new CalendarApp, $.CalendarApp.Constructor = CalendarApp
+}(window.jQuery),
+
+//initializing CalendarApp
+$(window).on('load', function() {
+    $.CalendarApp.init()
+    $("#calendar").fullCalendar("rerenderEvents");
+$("body button.fc-today-button").trigger('click');   
+
+});
+
+</script>

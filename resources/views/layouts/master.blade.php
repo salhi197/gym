@@ -16,7 +16,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('adminlte/plugins/fontawesome-free/css/all.min.css')}}">
   <link href="{{asset('adminlte/plugins/toastr/toastr.css')}}" rel="stylesheet" />
   <link rel="stylesheet" href="{{asset('adminlte/dist/css/adminlte.min.css')}}">
-  @yield('styles')
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
