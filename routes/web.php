@@ -59,15 +59,15 @@ Route::group(['prefix' => 'facture', 'as' => 'facture'], function () {
 });
 
 
-Route::group(['prefix' => 'analyse', 'as' => 'analyse'], function () {
-    Route::get('/', ['as' => '.index', 'uses' => 'AnalyseController@index']);
-    Route::get('/create',['as'=>'.create', 'uses' => 'AnalyseController@create']);
-    Route::post('/create', ['as' => '.store', 'uses' => 'AnalyseController@store']);
-    Route::get('/destroy/{id_demande}', ['as' => '.destroy', 'uses' => 'AnalyseController@destroy']); 
-    Route::get('/stock/{id_demande}', ['as' => '.stock', 'uses' => 'AnalyseController@stock']); 
-    Route::get('/edit/{id_demande}', ['as' => '.edit', 'uses' => 'AnalyseController@edit']);
-    Route::get('/print/{id_analyse}', ['as' => '.print', 'uses' => 'AnalyseController@print']);
-    Route::post('/update/{analyse}', ['as' => '.update', 'uses' => 'AnalyseController@update']);    
+Route::group(['prefix' => 'crenau', 'as' => 'crenau'], function () {
+    Route::get('/', ['as' => '.index', 'uses' => 'CrenauController@index']);
+    Route::get('/create',['as'=>'.create', 'uses' => 'CrenauController@create']);
+    Route::post('/create', ['as' => '.store', 'uses' => 'CrenauController@store']);
+    Route::get('/destroy/{id_demande}', ['as' => '.destroy', 'uses' => 'CrenauController@destroy']); 
+    Route::get('/stock/{id_demande}', ['as' => '.stock', 'uses' => 'CrenauController@stock']); 
+    Route::get('/edit/{id_demande}', ['as' => '.edit', 'uses' => 'CrenauController@edit']);
+    Route::get('/print/{cd_Crenau}', ['as' => '.print', 'uses' => 'CrenauController@print']);
+    Route::post('/update/{crenau}', ['as' => '.update', 'uses' => 'CrenauController@update']);    
 });
 
 
@@ -122,6 +122,7 @@ Route::group(['prefix' => 'membre', 'as' => 'membre'], function () {
     Route::post('/create', ['as' => '.store', 'uses' => 'MembreController@store']);
     Route::get('/destroy/{id_demande}', ['as' => '.destroy', 'uses' => 'MembreController@destroy']); 
     Route::get('/state/{id_demande}', ['as' => '.state', 'uses' => 'MembreController@state']); 
+    Route::get('/facture/{id_demande}', ['as' => '.facture', 'uses' => 'MembreController@facture']); 
     Route::get('/edit/{id_demande}', ['as' => '.edit', 'uses' => 'MembreController@edit']);
     Route::post('/update/{membre}', ['as' => '.update', 'uses' => 'MembreController@update']);    
     

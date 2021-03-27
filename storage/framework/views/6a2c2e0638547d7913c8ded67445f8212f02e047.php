@@ -16,6 +16,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="<?php echo e(asset('adminlte/plugins/fontawesome-free/css/all.min.css')); ?>">
   <link href="<?php echo e(asset('adminlte/plugins/toastr/toastr.css')); ?>" rel="stylesheet" />
   <link rel="stylesheet" href="<?php echo e(asset('adminlte/dist/css/adminlte.min.css')); ?>">
+  <?php echo $__env->yieldContent('styles'); ?>
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
@@ -43,6 +44,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <li class="nav-item">
             <a href="<?php echo e(route('inscription.index')); ?>" class="nav-link">Inscriptions</a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo e(route('crenau.index')); ?>" class="nav-link">Crénaux</a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo e(route('crenau.index')); ?>" class="nav-link">Rapports</a>
           </li>
           <li class="nav-item">
             <a href="<?php echo e(route('abonnement.index')); ?>" class="nav-link">Paramètres</a>

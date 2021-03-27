@@ -23,11 +23,10 @@ use DB;
 class CrenauController extends Controller
 {
 
-
     public function index()
     {
-        $crenaux = Crenau::all();
-        return view('crenaux.index',compact('crenaux'));
+        $crenaus = Crenau::all();
+        return view('crenaus.index',compact('crenaus'));
     }
 
     public function create()
@@ -39,7 +38,7 @@ class CrenauController extends Controller
         $categories = Categorie::all();
 
         
-        return view('crenaux.create',compact('operateurs1','operateurs2','produits','categories','clients'));
+        return view('crenaus.create',compact('operateurs1','operateurs2','produits','categories','clients'));
     }
 
     
@@ -95,7 +94,7 @@ class CrenauController extends Controller
         $dompdf->render();
         
         $dompdf->stream("bulletin.pdf", array("Attachment" => false));
-        return view('crenaux.view',compact('produit'));
+        return view('crenaus.view',compact('produit'));
     }
 
     public function edit($id_Crenau)
@@ -108,7 +107,7 @@ class CrenauController extends Controller
         $categories = Categorie::all();
         $Crenau = Crenau::find($id_Crenau);
     
-        return view('crenaux.edit',compact('Crenau','operateurs1','operateurs2','produits','categories','clients'));
+        return view('crenaus.edit',compact('Crenau','operateurs1','operateurs2','produits','categories','clients'));
     }
 
     public function update(Request $request,$Crenau_id)

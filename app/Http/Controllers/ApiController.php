@@ -17,6 +17,17 @@ class ApiController extends Controller
         }else{
             return response()->json(['reponse' => -1]);
         }
+    }
+    public function createPresence(Request $request)
+    {
+        $matricule = $request->matricule;
+        $presence = new Presnce();
+        try {
+            $presence->save();
+        } catch (\Throwable $th) {
+            return response()->json(['error' => 0]);
+        }
+        return response()->json(['error' => 1]);
 
     }
 }

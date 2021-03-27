@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0"> Liste de Inscriptions </h1>
+            <h1 class="m-0"> Liste de crenaus </h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -17,7 +17,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                        <i class="fa fa-plus"></i> Ajouter Inscription
+                                        <i class="fa fa-plus"></i> Ajouter crenau
                                     </button>
                                 </h4>
                                 
@@ -41,34 +41,34 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php $__currentLoopData = $inscriptions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $inscription): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php $__currentLoopData = $crenaus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $crenau): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
-                                                <td><?php echo e($inscription->debut ?? ''); ?></td>
-                                                <td><?php echo e($inscription->fin ?? ''); ?></td>
-                                                <td><?php echo e($inscription->reste ?? ''); ?></td>
-                                                <td style="text-align:center;"><?php echo e($inscription->nbsseance ?? ''); ?></td>
-                                                <td><?php echo e($inscription->getAbonnement()['label'] ?? ''); ?></td>
+                                                <td><?php echo e($crenau->debut ?? ''); ?></td>
+                                                <td><?php echo e($crenau->fin ?? ''); ?></td>
+                                                <td><?php echo e($crenau->reste ?? ''); ?></td>
+                                                <td style="text-align:center;"><?php echo e($crenau->nbsseance ?? ''); ?></td>
+                                                <td><?php echo e($crenau->getAbonnement()['label'] ?? ''); ?></td>
                                                 <td>
                                                     <span class="badge badge-info">
-                                                    <?php echo e($inscription->etat ?? ''); ?>
+                                                    <?php echo e($crenau->etat ?? ''); ?>
 
                                                     </span>
                                                 </td>
-                                                <td><?php echo e($inscription->total ?? ''); ?>DA</td>
-                                                <td><?php echo e($inscription->remise ?? ''); ?></td>
+                                                <td><?php echo e($crenau->total ?? ''); ?>DA</td>
+                                                <td><?php echo e($crenau->remise ?? ''); ?></td>
 
                                                 <td style="text-align:center;">
-                                                    <?php echo e($inscription->nbrmois ?? ''); ?>
+                                                    <?php echo e($crenau->nbrmois ?? ''); ?>
 
                                                 </td>                                            
-                                                <td><?php echo e($inscription->versement ?? ''); ?> DA</td>
+                                                <td><?php echo e($crenau->versement ?? ''); ?> DA</td>
 
                                                 <td>
-                                                <a class="btn btn-info text-white" href="<?php echo e(route('inscription.presence',['inscription'=>$inscription->id])); ?>"><i class="fa fa-list"></i></a>
-                                                <a class="btn btn-danger text-white"  onclick="return confirm('Are you sure?')"  href="<?php echo e(route('inscription.destroy',['inscription'=>$inscription->id])); ?>">Supprimer</a>
+                                                <a class="btn btn-info text-white" href="<?php echo e(route('crenau.presence',['crenau'=>$crenau->id])); ?>"><i class="fa fa-list"></i></a>
+                                                <a class="btn btn-danger text-white"  onclick="return confirm('Are you sure?')"  href="<?php echo e(route('crenau.destroy',['crenau'=>$crenau->id])); ?>">Supprimer</a>
                                                 </td>
                                             </tr>
-                                                <!-- <?php echo $__env->make('includes.modals.editInscription',['inscription'=>$inscription], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> -->
+                                                <!-- <?php echo $__env->make('includes.modals.editcrenau',['crenau'=>$crenau], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> -->
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>                                            
                                         </tbody>
                                     </table>
@@ -82,13 +82,13 @@
                             <div class="modal-dialog modal-xl" role="document">
                                 <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Ajouter Inscription</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Ajouter crenau</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form role="form" action="<?php echo e(route('inscription.store')); ?>" method="post">
+                                    <form role="form" action="<?php echo e(route('crenau.store')); ?>" method="post">
                                         <?php echo csrf_field(); ?>
                                         <div class="row">
                                             <div class="col-md-4">
@@ -97,9 +97,6 @@
                                                     <label>Abonnement</label>
                                                     <select class="form-control" id="abonnement" name="abonnement">
                                                         <option value="">séléctionner un abonnement</option>
-                                                        <?php $__currentLoopData = $abonnements; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $abonnement): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($abonnement); ?>"><?php echo e($abonnement->label); ?></option>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                 </div>
 

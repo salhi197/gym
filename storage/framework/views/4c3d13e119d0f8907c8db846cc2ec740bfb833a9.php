@@ -96,12 +96,72 @@
 </div>
 
 
+<div id="fullCalModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        Ajouter Crénau
+                    </div>
+
+                    <div class="modal-body">
+                        
+                        <!-- content goes here -->
+                        <form method="post" action="http://elitesoccer-dz.com/reservation/create" >
+                            <input type="hidden" name="_token" value="EYGIJvztmICgfRWJIitdlfBWLwZs6UsQSWIinlIr">                            <input type="hidden" readonly class="form-control" name="stade" value="1" placeholder="Enter email">
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Date evenemts</label>
+                                <input type="date" readonly class="form-control" id="eventdate" name="date" placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Heure</label>
+                                <input type="number" readonly class="form-control" name="crenau" id="crenau" name="crenau" placeholder="Enter email">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">nom prénom</label>
+                                <input type="text" class="form-control" id="fullname" name="fullname" >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Phone</label>
+                                <input type="text" class="form-control" id="phone" name="phone" >
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Prix</label>
+                                <input type="text" class="form-control" id="fullname" name="prix" value="6000">
+                            </div>
+
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="state" id="state1" value="1" >
+                                <label class="form-check-label" for="state1">
+                                    Payé
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="state" id="state2" value="0" checked>
+                                <label class="form-check-label" for="state2">
+                                    Non Payé
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-info">Submit</button>
+                        
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 </body>
 </html>
-<script src="<?php echo e(asset('js/moment.min.js')); ?>"></script>
 <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
+<script src="<?php echo e(asset('js/moment.min.js')); ?>"></script>
 <script src="<?php echo e(asset('js/fullcalendar.min.js')); ?>"></script>
-<script src="<?php echo e(asset('js/locale-all.js')); ?>"></script>
 
 <script>
 
@@ -109,9 +169,6 @@
 
 
 
-"use strict";
-$('b').hide()
-$('br').hide()
 
 var CalendarApp = function() {
     this.$body = $("body")
@@ -119,7 +176,6 @@ var CalendarApp = function() {
     this.$event = ('#calendar-events div.calendar-events'),
     this.$categoryForm = $('#add-new-event form'),
     this.$extEvents = $('#calendar-events'),
-    this.$modal = $('#my-event'),
     this.$saveCategoryBtn = $('.save-category'),
     this.$calendarObj = null
 };
@@ -163,8 +219,9 @@ CalendarApp.prototype.init = function() {
         
 
         
-
-        var evts = [{"id":53,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-03-30","state":"0","abonnement":"9"},{"id":52,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-03-23","state":"0","abonnement":"9"},{"id":51,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-03-16","state":"0","abonnement":"9"},{"id":58,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-05-04","state":"0","abonnement":"9"},{"id":55,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-04-13","state":"0","abonnement":"9"},{"id":54,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-04-06","state":"0","abonnement":"9"},{"id":29,"created_at":"2021-02-24 16:45:49","updated_at":"2021-02-24 16:45:49","fullname":"merounae","phone":"3456789","stade":"1","prix":"6000","crenau":"9","date":"2021-03-04","state":"0","abonnement":null},{"id":30,"created_at":"2021-02-24 16:46:10","updated_at":"2021-02-24 16:46:10","fullname":"uta","phone":"890","stade":"1","prix":"6000","crenau":"10","date":"2021-03-04","state":"0","abonnement":null},{"id":56,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-04-20","state":"0","abonnement":"9"},{"id":57,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-04-27","state":"0","abonnement":"9"}];
+        
+        var evts = <?php echo json_encode($presences); ?>
+        //[{"id":53,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-03-30","state":"0","abonnement":"9"},{"id":52,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-03-23","state":"0","abonnement":"9"},{"id":51,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-03-16","state":"0","abonnement":"9"},{"id":58,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-05-04","state":"0","abonnement":"9"},{"id":55,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-04-13","state":"0","abonnement":"9"},{"id":54,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-04-06","state":"0","abonnement":"9"},{"id":29,"created_at":"2021-02-24 16:45:49","updated_at":"2021-02-24 16:45:49","fullname":"merounae","phone":"3456789","stade":"1","prix":"6000","crenau":"9","date":"2021-03-04","state":"0","abonnement":null},{"id":30,"created_at":"2021-02-24 16:46:10","updated_at":"2021-02-24 16:46:10","fullname":"uta","phone":"890","stade":"1","prix":"6000","crenau":"10","date":"2021-03-04","state":"0","abonnement":null},{"id":56,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-04-20","state":"0","abonnement":"9"},{"id":57,"created_at":"2021-03-16 11:09:05","updated_at":"2021-03-16 11:09:05","fullname":"salhi haider","phone":"0551515151","stade":"1","prix":"6000","crenau":"14","date":"2021-04-27","state":"0","abonnement":"9"}];
         for(evt of evts){
             var dc= evt['crenau']
             var fc= parseInt(evt['crenau'])+1         
@@ -223,35 +280,11 @@ CalendarApp.prototype.init = function() {
             },                
             drop: function(date) { $this.onDrop($(this), date); },
             select: function(start, end, allDay) { 
-                console.log(start._i)
-                var month = parseInt(start._i[1]+1)
-                var crenau = parseInt(start._i[3])
-                var day = start._i[2]
-                if(month<10){
-                    month ='0'+month
-                }
-                if(day<10){
-                    day ='0'+day
-                }
-                var d = start._i[0]+'-'+month+'-'+day;      
-                console.log(start)              
-                console.log(d)              
-                $('#eventdate').val(d)
-                $('#crenau').val(crenau)
-                var today = new Date();
-                var dd = String(today.getDate()).padStart(2, '0');
-                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-                var yyyy = today.getFullYear();
-                today = yyyy+'-'+ mm + '-' + dd;
-                console.log(d, today)
-                if(d == today || d > today){
-                    $('#fullCalModal').modal();
-                }
-             },
+                console.log("calEvent")
+
+            },
             eventClick: function(calEvent, jsEvent, view) { 
-                console.log(calEvent)
-                var id = calEvent.id
-                $('#showEvent'+id).modal();
+                console.log("calEvent")
             }
         });
     },

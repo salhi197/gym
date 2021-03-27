@@ -46,19 +46,19 @@
                                                             <option value="femme">Femme</option>						                                                             
                                                         </select>
                                                     </div>
-                                                    <!-- <div class="form-group">
-                                                        <label>Fax</label>
-                                                        <input type="text" value="<?php echo e(old('fax')); ?>" name="fax" class="form-control">
-                                                    </div> -->
+                                                    <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input type="text" value="<?php echo e(old('email')); ?>" name="email" class="form-control">
+                                                    </div>
                                                 </div>
 
 
                                                 <div class ="col-sm-4">
                                                     <div class="preview text-center">
-                                                        <img class="preview-img" src="<?php echo e(asset('img/account.png')); ?>" alt="Preview Image" width="200" height="200"/>
+                                                        <img class="preview-img" src="<?php echo e(asset('img/account.png')); ?>" alt="Preview Image" width="200" height="200" for="UploadedFile"/>
                                                         <div class="browse-button">
                                                             <i class="fa fa-pencil-alt"></i>
-                                                            <input style="display:none;" type="file" required name="UploadedFile" id="UploadedFile"/>
+                                                            <input style="" type="file" required name="UploadedFile" id="UploadedFile"/>
                                                         </div>
                                                         <span class="Error"></span>
                                                     </div>

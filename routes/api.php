@@ -29,17 +29,16 @@ use Illuminate\Http\Request;
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-
     return $request->user();
-
 });
 Route::group(['prefix' => 'static', 'as' => 'static.'], function () {
     Route::get('/communes/{wilaya}', 'Api\StaticDataController@communes')->name('communes');
 });
 Route::post('/membre/verifier', 'ApiController@verifier');
+
+Route::post('/presense/create', 'ApiController@createPresence');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-
     return $request->user();
-
 });
 

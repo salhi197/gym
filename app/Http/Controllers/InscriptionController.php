@@ -13,7 +13,7 @@ class InscriptionController extends Controller
     public function index()
     {
         $inscriptions = Inscription::all();        
-        return view('inscriptions.presences',compact('inscriptions'));
+        return view('inscriptions.index',compact('inscriptions'));
     }
 
     

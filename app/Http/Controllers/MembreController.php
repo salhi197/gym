@@ -7,6 +7,10 @@ use Hash;
 use Carbon\Carbon;
 use App\Http\Requests\StoreProduit;
 use App\Membre;
+use App\Template;
+
+use Dompdf\Dompdf;
+
 use App\Abonnement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -92,6 +96,23 @@ class MembreController extends Controller
         $membre= Membre::find($id_membre);
         return view('membres.edit',compact('abonnements','membre'));
     }
+
+
+    public function facture($id_membre)
+    {
+        $membre= Membre::find($id_membre);
+        $dompdf = new Dompdf();
+        $html = Template::Facture($membre);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4');
+        $dompdf->render();
+        
+        $dompdf->stream("bulletin.pdf", array("Attachment" => false));
+
+
+        return view('membres.edit',compact('abonnements','membre'));
+    }
+
 
     public function update(Request $request,$membre_id)
     {

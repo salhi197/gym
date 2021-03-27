@@ -21,7 +21,7 @@
 <?php $__env->startSection('content'); ?>
 
 
-<div class="card">
+                        <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="example1" class="table table-striped table-bordered no-wrap">
@@ -55,6 +55,7 @@
                                                 <a class="btn btn-info text-white" href="<?php echo e(route('membre.edit',['membre'=>$membre->id])); ?>"><i class="fa fa-edit"></i></a>
                                                 <!-- <a href="<?php echo e(route('membre.destroy',['membre'=>$membre->id])); ?>" onclick="return confirm('Etes vous sure ?')"  class="btn btn-danger text-white"><i class="fa fa-window-close"></i></a> -->
                                                 <a class="btn btn-info text-white" href="<?php echo e(route('membre.inscriptions',['membre'=>$membre->id])); ?>">Inscriptions</a>
+                                                <a class="btn btn-primary text-white" href="<?php echo e(route('membre.facture',['membre'=>$membre->id])); ?>">Facture</a>
                                                 </td>
                                             </tr>
 
