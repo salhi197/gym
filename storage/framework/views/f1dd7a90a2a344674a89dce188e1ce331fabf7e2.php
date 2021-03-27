@@ -69,7 +69,7 @@
                                                         <img class="preview-img" src="<?php echo e(asset('img/account.png')); ?>" alt="Preview Image" width="200" height="200" for="UploadedFile"/>
                                                         <div class="browse-button">
                                                             <i class="fa fa-pencil-alt"></i>
-                                                            <input style="" type="file" required name="UploadedFile" id="UploadedFile"/>
+                                                            <input style="" type="file" name="UploadedFile" id="UploadedFile"/>
                                                         </div>
                                                         <span class="Error"></span>
                                                     </div>

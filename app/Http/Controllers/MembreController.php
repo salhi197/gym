@@ -15,6 +15,8 @@ use App\Abonnement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use DateTime;
+
 class MembreController extends Controller
 {
     public function index()
@@ -100,14 +102,139 @@ class MembreController extends Controller
 
     public function facture($id_membre)
     {
-        $membre= Membre::find($id_membre);
-        $dompdf = new Dompdf();
-        $html = Template::Facture($membre);
+        $membre=DB::select(" select * from membres where id='$id_membre' ");
+        $inscription=DB::select(" select * from inscriptions 
+            where membre='$id_membre'
+            order by id desc limit 1 ");
+        dd($inscription);
+         $dompdf = new Dompdf();
+
+        $html = '<!doctype html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <title>Bon : '.$now.' </title>
+        <style type="text/css">
+            * {
+                font-family: Verdana, Arial, sans-serif;
+            }
+            table{
+            }
+            tfoot tr td{
+                font-weight: bold;
+            }
+            .gray {
+                background-color: lightgray;
+            }
+            tbody {
+                width: 100%;
+            }
+        </style>
+        </head>
+        <body>
+          <table width="100%">
+            <tr>
+                <td valign="top"></td>
+                <td align="left">
+
+                    <h1 style="text-align: center;"><B> Salle de Sport Sifou</B></h1>
+                      <h2 style="text-align: center;">Bon_Inscription: '.$now.'</h2>
+
+                     
+
+                </td>
+                <td align="right">
+                    <img src=""  />
+                </td>
+            </tr>
+          </table>
+          
+          <br/>
+          <table width="100%">
+            <thead style="background-color: lightgray;">
+              <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Téléphone</th>
+                <th>Date début</th>
+                <th>Date Fin</th>
+                <th>Total</th>
+                <th>Versement</th>
+                <th>Etat</th>
+                
+              </tr>
+            </thead>
+            <tbody>';
+           
+            foreach ($traductions as $traduction) 
+            {
+                    
+
+               
+
+                    $nom=$traduction->name;
+                    $prenom=$traduction->prenom;
+                    $telephone=$traduction->telephone;
+                    $total=$traduction->total;
+                    $versement=$traduction->versement;
+                    $state=$traduction->state;
+
+                    
+
+                    
+
+                        
+                    $html.='<tr class="item">
+                    
+                    <td>
+                        '.$nom.'
+                    </td>
+                    <td>
+
+                        '.$prenom.'
+                    </td>
+                     <td>
+
+                        '.$telephone.'
+                    </td>
+                     <td>
+
+                        '.$total.'
+                    </td>
+                     <td>
+
+                        '.$versement.'
+                    </td>
+                     <td>
+
+                        '.$state.'
+                    </td>
+                   
+                </tr>';
+
+               
+            }
+
+            
+
+           
+
+        $html.='
+            </tbody>
+            <tfoot>';
+           
+            
+            $html.='</tfoot>
+          </table>
+          
+
+        </body>
+        </html>';
+
         $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4');
         $dompdf->render();
+        $dompdf->stream("Situation", array('Attachment'=>1));
         
-        $dompdf->stream("bulletin.pdf", array("Attachment" => false));
 
 
         return view('membres.edit',compact('abonnements','membre'));
