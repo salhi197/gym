@@ -102,11 +102,18 @@ class MembreController extends Controller
 
     public function facture($id_membre)
     {
-        $membre=DB::select(" select * from membres where id='$id_membre' ");
+        $membre=DB::select(" select * from membres where id='$id_membre' ")[0];
+
         $inscription=DB::select(" select * from inscriptions 
             where membre='$id_membre'
-            order by id desc limit 1 ");
-        dd($inscription);
+            order by id desc limit 1 ")[0];
+
+        $idabonnement=$inscription->abonnement;
+
+        $abonnement=DB::select(" select * from abonnements where id='$idabonnement' ")[0];
+
+        $now = Carbon::now()->format('d-m-Y');
+
          $dompdf = new Dompdf();
 
         $html = '<!doctype html>
@@ -139,6 +146,8 @@ class MembreController extends Controller
 
                     <h1 style="text-align: center;"><B> Salle de Sport Sifou</B></h1>
                       <h2 style="text-align: center;">Bon_Inscription: '.$now.'</h2>
+                      <h4 style="text-align: center;">Client: '.$membre->nom.' '.$membre->prenom.'</h4>
+                      <h4 style="text-align: center;">Téléphone: '.$membre->telephone.' </h4>
 
                      
 
@@ -153,68 +162,48 @@ class MembreController extends Controller
           <table width="100%">
             <thead style="background-color: lightgray;">
               <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Téléphone</th>
+                <th>Abonnement</th>
+                <th>Tarif</th>
                 <th>Date début</th>
                 <th>Date Fin</th>
-                <th>Total</th>
                 <th>Versement</th>
-                <th>Etat</th>
+         
                 
               </tr>
             </thead>
             <tbody>';
            
-            foreach ($traductions as $traduction) 
-            {
-                    
-
-               
-
-                    $nom=$traduction->name;
-                    $prenom=$traduction->prenom;
-                    $telephone=$traduction->telephone;
-                    $total=$traduction->total;
-                    $versement=$traduction->versement;
-                    $state=$traduction->state;
-
-                    
-
+      
                     
 
                         
                     $html.='<tr class="item">
                     
                     <td>
-                        '.$nom.'
+                        '.$abonnement->label.'
                     </td>
                     <td>
 
-                        '.$prenom.'
+                        '.$abonnement->tarif.'
+                    </td>
+                   
+                     <td>
+
+                        '.$inscription->debut.'
                     </td>
                      <td>
 
-                        '.$telephone.'
+                        '.$inscription->fin.'
                     </td>
                      <td>
 
-                        '.$total.'
+                        '.$inscription->versement.'
                     </td>
-                     <td>
-
-                        '.$versement.'
-                    </td>
-                     <td>
-
-                        '.$state.'
-                    </td>
+                    
                    
                 </tr>';
 
-               
-            }
-
+   
             
 
            
@@ -233,7 +222,7 @@ class MembreController extends Controller
 
         $dompdf->loadHtml($html);
         $dompdf->render();
-        $dompdf->stream("Situation", array('Attachment'=>1));
+        $dompdf->stream("BonClient", array('Attachment'=>1));
         
 
 
