@@ -11,7 +11,7 @@
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
                                     <div class="d-inline-flex align-items-center">
-                                        <h2 class="text-dark mb-1 font-weight-medium" id="time-part"></h2>
+                                        <h2 class="text-dark mb-1 font-weight-medium text-center" id="time-part"></h2>
                                         
                                     </div>
                                     
@@ -25,81 +25,15 @@
                     <div class="card border-right">
                         <div class="card-body" >
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
-                                
-                                <div>
-                                <h2 style="text-align: center;  "  ><B>Recette d'aujourd'hui</B></h2>
-                                    <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><sup
-                                            class="set-doller">DA</sup></h2>
-                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total d'aujourd'hui
-                                    </h6>
-                                    
-                                    <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><sup
-                                            class="set-doller">DA</sup>h2>
-                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Versement d'aujourd'hui
-                                    </h6>
-
-                                    <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><sup
-                                            class="set-doller">DA</sup>h2>
-                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Reste d'aujourd'hui
-                                    </h6>
-                                    
-                                </div>
+                            <canvas id="myChart" width="600" height="250"></canvas>                                
                                 <div class="ml-auto mt-md-3 mt-lg-0">
                                     <span class="opacity-7 text-muted"><i data-feather="dollar-sign"></i></span>
                                 </div>
                             </div>
                         </div> 
                     </div>
-                    <div class="card border-right">
-                        <div class="card-body">
-                            <div class="d-flex d-lg-flex d-md-block align-items-center">
-                                <div>
-                                     <h2 style="text-align: center;"  ><B>Recette du Mois</B></h2>
-                                    <div class="d-inline-flex align-items-center">
-                                        <h2 style="text-align: center;  " class="text-dark mb-1 font-weight-medium"> DA</h2>
-                                    </div>
-                                    <h6 style="text-align: center;  " class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total du mois</h6>
-
-                                    <div class="d-inline-flex align-items-center">
-                                        <h2 style="text-align: center;  " class="text-dark mb-1 font-weight-medium"> DA</h2>
-                                    </div>
-                                    <h6 style="text-align: center;  " class="text-muted font-weight-normal mb-0 w-100 text-truncate">Versement du mois</h6>
-                                </div>
-
-                                
-
-                                <div class="ml-auto mt-md-3 mt-lg-0">
-                                    <span class="opacity-7 text-muted"><i data-feather="file-plus"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex d-lg-flex d-md-block align-items-center">
-                                <div>
-                                    <h2 style="text-align: center;"  ><B>Recette de l'année</B></h2>
-                                    <h2 class="text-dark mb-1 font-weight-medium"></h2>
-                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total des traductions</h6>
-                                </div>
-                                <div class="ml-auto mt-md-3 mt-lg-0">
-                                    <span class="opacity-7 text-muted"><i data-feather="globe"></i></span>
-                                </div>
-                            </div>
-
-                            <div class="d-flex d-lg-flex d-md-block align-items-center">
-                                <div>
-                                    <h2 class="text-dark mb-1 font-weight-medium"> DA</h2>
-                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total Caisse</h6>
-                                </div>
-                                <div class="ml-auto mt-md-3 mt-lg-0">
-                                    <span class="opacity-7 text-muted"><i data-feather="globe"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div> 
-@endif
+            @endif
                 <div class="card mb-4">
                 <br>
             <h1 style="text-align: center; color: black; " ><B>Tableau de bord</B></h1>
@@ -125,6 +59,8 @@
 
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 <script>
 $(document).ready(function() {
     var interval = setInterval(function() {
@@ -134,7 +70,103 @@ $(document).ready(function() {
                              .substring(0,3).toUpperCase());
         $('#time-part').html(momentNow.format('A hh:mm:ss'));
     }, 100);
+    aDatasets1 = [65,59,80,81,56,55,40,47];  
+aDatasets2 = [20,30,40,50,60,20,25,47];
+aDatasets3 = [30,20,25,65,90,34,20,47];
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Samedi", "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi","vendredi"],
+        
+        datasets: [ {
+              label: 'Result',
+              fill:false,
+            data: aDatasets1,
+            backgroundColor: '#E91E63',
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+            ],
+            borderWidth: 1
+        },
+        
+        {
+            label: 'Attendance',
+              fill:false,
+            data: aDatasets2,
+            backgroundColor: 
+                '#3F51B5'
+            ,
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+            ],
+            borderWidth: 1
+        },
+        {
+            label: [
+            'score'
+            ],
+            data: aDatasets3,
+              fill:false,
+           backgroundColor:  '#004D40',
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+            ],
+            borderWidth: 1
+        }
+        ]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        },
+        title: {
+            display: true,
+            text: 'Nishi IT Institute'
+        },
+        responsive: true,
+        
+       tooltips: {
+            callbacks: {
+                labelColor: function(tooltipItem, chart) {
+                    return {
+                        borderColor: 'rgb(255, 0, 20)',
+                        backgroundColor: 'rgb(255,20, 0)'
+                    }
+                }
+            }
+        },
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'red',
+               
+            }
+        }
+    }
 });
+
+});
+
 
 
 </script>

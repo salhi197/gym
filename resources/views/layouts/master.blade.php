@@ -24,7 +24,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
-      <a href="../../index3.html" class="navbar-brand">
+      <a href="/home" class="navbar-brand">
         <span class="brand-text font-weight-light">Salle du sport</span>
       </a>
 
