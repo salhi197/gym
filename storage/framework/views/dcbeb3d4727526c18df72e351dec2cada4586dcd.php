@@ -1,8 +1,8 @@
-@extends('layouts.master')
 
 
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 
 <div class="container-fluid">
 
@@ -12,8 +12,8 @@
                                 <div class="card mt-2">
                                     <div class="card-header"><h3 class="font-weight-light my-4"> Nouveau Crénaux : </h3></div>
                                     <div class="card-body">
-                                        <form role="form" action="{{route('crenau.store')}}" method="post">
-                                        @csrf
+                                        <form role="form" action="<?php echo e(route('crenau.store')); ?>" method="post">
+                                        <?php echo csrf_field(); ?>
                                             <div class="row">
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
@@ -56,7 +56,7 @@
                                                     </div>
                                                     <!-- <div class="form-group">
                                                         <label>Fax</label>
-                                                        <input type="text" value="{{old('fax')}}" name="fax" class="form-control">
+                                                        <input type="text" value="<?php echo e(old('fax')); ?>" name="fax" class="form-control">
                                                     </div> -->
                                                 </div>
 
@@ -113,9 +113,9 @@
                         </div>
 
                     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('scripts')
+<?php $__env->startSection('scripts'); ?>
 <script>
 $(document).ready(function() {
     var dynamic_form =  $("#dynamic_form").dynamicForm("#dynamic_form","#plus5", "#minus5", {
@@ -146,7 +146,9 @@ $(document).ready(function() {
 
 
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

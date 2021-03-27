@@ -16,9 +16,9 @@
                     <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                    <a  class="btn btn-primary" href="<?php echo e(route('crenau.create')); ?>">
                                         <i class="fa fa-plus"></i> Ajouter crenau
-                                    </button>
+                                    </a>
                                 </h4>
                                 
                                 <div class="table-responsive">

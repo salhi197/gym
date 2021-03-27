@@ -30,15 +30,8 @@ class CrenauController extends Controller
     }
 
     public function create()
-    {
-        $operateurs1 = Operateur::where('type',"1")->get();
-        $operateurs2 = Operateur::where('type',"2")->get();
-        $produits = Produit::all();
-        $clients = Client::all();
-        $categories = Categorie::all();
-
-        
-        return view('crenaus.create',compact('operateurs1','operateurs2','produits','categories','clients'));
+    {        
+        return view('crenaus.create');
     }
 
     
