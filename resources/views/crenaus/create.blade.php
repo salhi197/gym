@@ -116,6 +116,8 @@
 @endsection
 
 @section('scripts')
+<script src="{{asset('js/dynamuc-form.js')}}"></script>
+
 <script>
 $(document).ready(function() {
     var dynamic_form =  $("#dynamic_form").dynamicForm("#dynamic_form","#plus5", "#minus5", {
