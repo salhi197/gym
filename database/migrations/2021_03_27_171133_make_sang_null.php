@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSanguinToMembersTable extends Migration
+class MakeSangNull extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class AddSanguinToMembersTable extends Migration
      */
     public function up()
     {
-        Schema::table('membres', function (Blueprint $table) {
-             $table->string('sang');
+        Schema::table('membres', function($table)
+        {
+           $table->string('sang', 20)->nullable()->change(); 
         });
+            
     }
 
     /**
@@ -25,8 +27,6 @@ class AddSanguinToMembersTable extends Migration
      */
     public function down()
     {
-        Schema::table('members', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }
