@@ -50,6 +50,21 @@
                                                         <label>Email</label>
                                                         <input type="text" value="{{old('email')}}" name="email" class="form-control">
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label>Group Sanguin</label>
+                                                        <select class="form-control" name="sanguin">
+                                                            <option value="A+">A+</option>
+                                                            <option value="A-">A-</option>
+                                                            <option value="B+">B+</option>
+                                                            <option value="B-">B-</option>
+                                                            <option value="O+">O+</option>
+                                                            <option value="O-">O-</option>
+                                                            <option value="AB+">AB+</option>
+                                                            <option value="AB-">AB-</option>
+
+                                                        </select>
+
+                                                    </div>
                                                 </div>
 
 

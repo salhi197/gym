@@ -11,7 +11,7 @@
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
                                     <div class="d-inline-flex align-items-center">
-                                        <h2 class="text-dark mb-1 font-weight-medium" id="time-part"></h2>
+                                        <h2 class="text-dark mb-1 font-weight-medium text-center" id="time-part"></h2>
                                         
                                     </div>
                                     
@@ -70,14 +70,14 @@ $(document).ready(function() {
                              .substring(0,3).toUpperCase());
         $('#time-part').html(momentNow.format('A hh:mm:ss'));
     }, 100);
-    aDatasets1 = [65,59,80,81,56,55,40];  
-aDatasets2 = [20,30,40,50,60,20,25];
-aDatasets3 = [30,20,25,65,90,34,20];
+    aDatasets1 = [65,59,80,81,56,55,40,47];  
+aDatasets2 = [20,30,40,50,60,20,25,47];
+aDatasets3 = [30,20,25,65,90,34,20,47];
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: ["Samedi", "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi","vendredi"],
         
         datasets: [ {
               label: 'Result',
