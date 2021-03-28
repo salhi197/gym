@@ -33,7 +33,9 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home');
+        $nbmembres=count(DB::select("select * from membres"));
+        return view('home',compact('nbmembres'));
+     
     }
 
     public function search(Request $request)
