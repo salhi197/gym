@@ -4,10 +4,8 @@
 
 @section('content')
 
-<div class="container-fluid">
-
+                <div class="container-fluid">
                         <div class="row">
-
                             <div class="col-lg-12">
                                 <div class="card mt-2">
                                     <div class="card-header"><h3 class="font-weight-light my-4"> Nouveau Crénaux : </h3></div>
@@ -17,33 +15,33 @@
                                             <div class="row">
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
-                                                        <label>Nom</label>
+                                                        <label>Type: </label>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                            <input class="form-check-input" value="homme" type="radio" name="type" id="type1">
+                                                            <label class="form-check-label" for="type1">
                                                                 Homme
                                                             </label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                            <input class="form-check-input" value="femme" type="radio" name="type" id="type2" checked>
+                                                            <label class="form-check-label" for="type2">
                                                                 Femme
                                                             </label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                            <input class="form-check-input" value="mixte" type="radio" name="type" id="type2" checked>
+                                                            <label class="form-check-label" for="type2">
                                                                 Mixte (Homme & Femme)
                                                             </label>
                                                         </div>
-
                                                     </div>
-
                                                 </div>
 
                                                 <div class ="col-sm-4">
                                                     <div class="form-group">
-                                                        <label>Genre</label>
+                                                        <label>
+                                                            Jour
+                                                        </label>
                                                         <select class="form-control" name="jour">
                                                             <option value="homme">Samedi</option>						 
                                                             <option value="femme">dimanche</option>						                                                             
@@ -71,25 +69,22 @@
 
 
 
-                                <div class="card mt-2">
-                                    <div class="card-header"><h3 class="font-weight-light my-4"> Type d'abonnement  </h3></div>
-                                    <div class="card-body">
-                                            <div class="row">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="font-weight-light my-4"> 
+                                            Plage Horraire  
+                                        </h3>
+                                    </div>
+                                        <div class="card-body">
                                                 <div class="form-group" id="dynamic_form">
                                                     <div class="row">
-                                                        <div class="col-md-2">
-                                                            <input type="text" name="designation" id="p_name" placeholder="désignation" class="form-control">
+                                                        <div class="col-md-4">
+                                                            <input type="text" name="debut" id="debut" placeholder="Heure Début" class="form-control debuts">
                                                         </div>
-                                                        <div class="col-md-2">
-                                                            <input type="number" class="form-control" name="quantite" id="quantite" placeholder="Quantité" >
+                                                        <div class="col-md-4">
+                                                            <input type="number" class="form-control fins" name="fin" id="fin" placeholder="Heure Fin" >
                                                         </div>
 
-                                                        <div class="col-md-2">
-                                                            <input type="number" class="form-control" name="prix" id="prix" placeholder="Prix" >
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <input type="number" class="form-control" name="montant" id="montant" placeholder="montant" >
-                                                        </div>
                                                         <div class="button-group">
                                                             <a href="javascript:void(0)" class="btn btn-primary" id="plus5"><i class="fa fa-plus"></i></a>
                                                             <a href="javascript:void(0)" class="btn btn-danger" id="minus5"><i class="fa fa-minus"></i></a>
@@ -97,8 +92,6 @@
                                                     </div>
                                                 </div>
 
-
-                                            </div>
                                             <div class="col-sm-12">
                                                 <button type="submit" id="valider"  class="btn btn-info btn-block">Valider</button>
                                             </div>
@@ -116,7 +109,7 @@
 @endsection
 
 @section('scripts')
-<script src="{{asset('js/dynamuc-form.js')}}"></script>
+<script src="{{asset('js/dynamic-form.js')}}"></script>
 
 <script>
 $(document).ready(function() {

@@ -15,8 +15,9 @@ class CreateCrenausTable extends Migration
     {
         Schema::create('crenaus', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nom');
-            
+            $table->string('type');
+            $table->string('jour');
+            $table->longText('plage');
             $table->timestamps();
         });
     }

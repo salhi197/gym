@@ -5,17 +5,13 @@
 
             <div class="card-group">
                     <div class="card border-right">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
-                                <div>
                                     <div class="d-inline-flex align-items-center">
-                                        <h2 class="text-dark mb-1 font-weight-medium text-center" id="time-part"></h2>
-                                        
-                                    </div>
-                                    
-                                </div>
+                                        <h2 class="text-dark mb-1 font-weight-medium text-center" id="time-part"></h2><br>
+                                    </div>                                    
                                 <div class="ml-auto mt-md-3 mt-lg-0">
-                                    <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
+                                <h2 class="text-dark mb-1 font-weight-medium text-center" id="date-part"></h2>                                        
                                 </div>
                             </div>
                         </div>
@@ -30,7 +26,7 @@
                             </div>
                         </div> 
                     </div>
-                </div> 
+            </div> 
             <?php endif; ?>
                 <div class="card mb-4">
                 <br>
@@ -70,7 +66,6 @@ $(document).ready(function() {
     }, 100);
     aDatasets1 = [65,59,80,81,56,55,40,47];  
 aDatasets2 = [20,30,40,50,60,20,25,47];
-aDatasets3 = [30,20,25,65,90,34,20,47];
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'bar',
@@ -78,7 +73,7 @@ var myChart = new Chart(ctx, {
         labels: ["Samedi", "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi","vendredi"],
         
         datasets: [ {
-              label: 'Result',
+              label: 'Homme',
               fill:false,
             data: aDatasets1,
             backgroundColor: '#E91E63',
@@ -94,7 +89,7 @@ var myChart = new Chart(ctx, {
         },
         
         {
-            label: 'Attendance',
+            label: 'Femme',
               fill:false,
             data: aDatasets2,
             backgroundColor: 
@@ -109,24 +104,8 @@ var myChart = new Chart(ctx, {
                 'rgba(255,99,132,1)',
             ],
             borderWidth: 1
-        },
-        {
-            label: [
-            'score'
-            ],
-            data: aDatasets3,
-              fill:false,
-           backgroundColor:  '#004D40',
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-            ],
-            borderWidth: 1
         }
+        
         ]
     },
     options: {

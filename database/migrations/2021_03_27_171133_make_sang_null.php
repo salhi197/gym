@@ -15,7 +15,7 @@ class MakeSangNull extends Migration
     {
         Schema::table('membres', function($table)
         {
-           $table->string('sang', 20)->nullable()->change(); 
+//           $table->string('sang', 20)->nullable()->change(); 
         });
             
     }

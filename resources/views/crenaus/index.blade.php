@@ -25,48 +25,25 @@
                                     <table id="zero_config" id="DataTable" class="table table-striped table-bordered no-wrap">
                                         <thead>
                                             <tr>
-                                                <th>debut</th>
-                                                <th>fin</th>
-                                                <th>reste</th>
-                                                <th>nbr seances</th>
-                                                <th>abonnement</th>
-                                                <th>etat</th>
-                                                <th>total</th>
-                                                <th>remise</th>
-                                                <th>nbrmois</th>
-                                                <th>versement</th>
-                                                
+                                                <th>#</th>
+                                                <th>Type</th>
+                                                <th>Jour</th>
+                                                <th>Plage Horraire</th>                                                
                                                 <th>actions</th>
-                                                
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($crenaus as $crenau)
                                             <tr>
-                                                <td>{{$crenau->debut ?? ''}}</td>
-                                                <td>{{$crenau->fin ?? ''}}</td>
-                                                <td>{{$crenau->reste ?? ''}}</td>
-                                                <td style="text-align:center;">{{$crenau->nbsseance ?? ''}}</td>
-                                                <td>{{$crenau->getAbonnement()['label'] ?? ''}}</td>
+                                                <td>{{$crenau->id ?? ''}}</td>
+                                                <td>{{$crenau->type ?? ''}}</td>
+                                                <td>{{$crenau->jour ?? ''}}</td>
+                                                <td>{{$crenau->plage ?? ''}}</td>
                                                 <td>
-                                                    <span class="badge badge-info">
-                                                    {{$crenau->etat ?? ''}}
-                                                    </span>
-                                                </td>
-                                                <td>{{$crenau->total ?? ''}}DA</td>
-                                                <td>{{$crenau->remise ?? ''}}</td>
-
-                                                <td style="text-align:center;">
-                                                    {{$crenau->nbrmois ?? ''}}
-                                                </td>                                            
-                                                <td>{{$crenau->versement ?? ''}} DA</td>
-
-                                                <td>
-                                                <a class="btn btn-info text-white" href="{{route('crenau.presence',['crenau'=>$crenau->id])}}"><i class="fa fa-list"></i></a>
                                                 <a class="btn btn-danger text-white"  onclick="return confirm('Are you sure?')"  href="{{route('crenau.destroy',['crenau'=>$crenau->id])}}">Supprimer</a>
+                                                <a class="btn btn-info text-white"  href="{{route('crenau.edit',['crenau'=>$crenau->id])}}">Edit</a>
                                                 </td>
                                             </tr>
-                                                <!-- @include('includes.modals.editcrenau',['crenau'=>$crenau]) -->
                                             @endforeach                                            
                                         </tbody>
                                     </table>
