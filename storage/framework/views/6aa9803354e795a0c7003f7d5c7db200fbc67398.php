@@ -10,26 +10,26 @@
                                 <div class="card mt-2">
                                     <div class="card-header"><h3 class="font-weight-light my-4"> Nouveau Crénaux : </h3></div>
                                     <div class="card-body">
-                                        <form role="form" action="<?php echo e(route('crenau.store')); ?>" method="post">
+                                        <form role="form" action="<?php echo e(route('crenau.update',['crenau'=>$crenau->id])); ?>" method="post">
                                         <?php echo csrf_field(); ?>
                                             <div class="row">
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label>Type: </label>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" value="homme" type="radio" name="type" id="type1">
+                                                            <input class="form-check-input" value="homme" type="radio" name="type" <?php if($crenau->type=='homme'): ?> checked <?php endif; ?> id="type1">
                                                             <label class="form-check-label" for="type1">
                                                                 Homme
                                                             </label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" value="femme" type="radio" name="type" id="type2" checked>
+                                                            <input class="form-check-input" value="femme" type="radio" name="type" <?php if($crenau->type=='femme'): ?> checked <?php endif; ?> id="type2" checked>
                                                             <label class="form-check-label" for="type2">
                                                                 Femme
                                                             </label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" value="mixte" type="radio" name="type" id="type2" checked>
+                                                            <input class="form-check-input" value="mixte" type="radio" name="type" <?php if($crenau->type=='mixte'): ?> checked <?php endif; ?> id="type2" checked>
                                                             <label class="form-check-label" for="type2">
                                                                 Mixte (Homme & Femme)
                                                             </label>
@@ -44,13 +44,13 @@
                                                         </label>
                                                         <select class="form-control" name="jour">
                                                             <option value="">Séléctionner un Jour</option>						 
-                                                            <option value="samedi">Samedi</option>						 
-                                                            <option value="dimanche">dimanche</option>						                                                             
-                                                            <option value="lundi">lundi</option>						                                                             
-                                                            <option value="mardi">mardi</option>						                                                             
-                                                            <option value="mercredi">mercredi</option>						                                                             
-                                                            <option value="jeudi">jeudi</option>						                                                             
-                                                            <option value="vendredi">vendredi</option>						                                                             
+                                                            <option value="samedi" <?php if($crenau->jour="samedi"): ?> selected <?php endif; ?>>Samedi</option>						 
+                                                            <option value="dimanche" <?php if($crenau->jour="dimanche"): ?> selected <?php endif; ?>>dimanche</option>						                                                             
+                                                            <option value="lundi" <?php if($crenau->jour="lundi"): ?> selected <?php endif; ?>>lundi</option>						                                                             
+                                                            <option value="mardi" <?php if($crenau->jour="mardi"): ?> selected <?php endif; ?>>mardi</option>						                                                             
+                                                            <option value="mercredi" <?php if($crenau->jour="mercredi"): ?> selected <?php endif; ?>>mercredi</option>						                                                             
+                                                            <option value="jeudi" <?php if($crenau->jour="jeudi"): ?> selected <?php endif; ?>>jeudi</option>						                                                             
+                                                            <option value="vendredi" <?php if($crenau->jour="vendredi"): ?> selected <?php endif; ?>>vendredi</option>						                                                             
                                                         </select>
                                                     </div>
                                                 </div>

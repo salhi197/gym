@@ -36,9 +36,29 @@
                                             @foreach($crenaus as $crenau)
                                             <tr>
                                                 <td>{{$crenau->id ?? ''}}</td>
-                                                <td>{{$crenau->type ?? ''}}</td>
+                                                <td>
+                                                    @if($crenau->type = "homme")
+                                                        <span class="badge badge-info">
+                                                        {{$crenau->type ?? ''}}
+                                                        </span>                                                    
+                                                    @else
+                                                        <span class="badge badge-danger">
+                                                        {{$crenau->type ?? ''}}
+                                                        </span>
+                                                    @endif
+                                                </td>
                                                 <td>{{$crenau->jour ?? ''}}</td>
-                                                <td>{{$crenau->plage ?? ''}}</td>
+
+                                                <?php 
+                                                    $plage = json_decode($crenau->plage);
+                                                ?>
+                                                <td>
+                                                    @foreach($plage as $p)
+                                                        {{$p->debut ?? ''}}
+                                                            -
+                                                        {{$p->fin ?? ''}}                                                         
+                                                    @endforeach
+                                                </td>
                                                 <td>
                                                 <a class="btn btn-danger text-white"  onclick="return confirm('Are you sure?')"  href="{{route('crenau.destroy',['crenau'=>$crenau->id])}}">Supprimer</a>
                                                 <a class="btn btn-info text-white"  href="{{route('crenau.edit',['crenau'=>$crenau->id])}}">Edit</a>

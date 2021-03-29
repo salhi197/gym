@@ -33,13 +33,13 @@ Route::group(['prefix' => 'produit', 'as' => 'produit'], function () {
     Route::post('/update/{produit}', ['as' => '.update', 'uses' => 'ProduitController@update']);    
 });
 
-Route::group(['prefix' => 'item', 'as' => 'item'], function () {
-    Route::get('/', ['as' => '.index', 'uses' => 'ItemController@index']);
-    Route::get('/create',['as'=>'.create', 'uses' => 'ItemController@create']);
-    Route::post('/create', ['as' => '.store', 'uses' => 'ItemController@store']);
-    Route::get('/destroy/{id_demande}', ['as' => '.destroy', 'uses' => 'ItemController@destroy']); 
-    Route::get('/edit/{id_demande}', ['as' => '.edit', 'uses' => 'ItemController@edit']);
-    Route::post('/update/{item}', ['as' => '.update', 'uses' => 'ItemController@update']);    
+Route::group(['prefix' => 'setting', 'as' => 'setting'], function () {
+    Route::get('/', ['as' => '.index', 'uses' => 'SettingController@index']);
+    Route::get('/create',['as'=>'.create', 'uses' => 'SettingController@create']);
+    Route::post('/create', ['as' => '.store', 'uses' => 'SettingController@store']);
+    Route::get('/destroy/{id_demande}', ['as' => '.destroy', 'uses' => 'SettingController@destroy']); 
+    Route::get('/edit/{id_demande}', ['as' => '.edit', 'uses' => 'SettingController@edit']);
+    Route::post('/update/{setting}', ['as' => '.update', 'uses' => 'SettingController@update']);    
 });
 
 

@@ -40,29 +40,20 @@
                                                 <div class ="col-sm-4">
                                                     <div class="form-group">
                                                         <label>
-                                                            Jour
+                                                            Jour : 
                                                         </label>
                                                         <select class="form-control" name="jour">
-                                                            <option value="homme">Samedi</option>						 
-                                                            <option value="femme">dimanche</option>						                                                             
-                                                            <option value="femme">lundi</option>						                                                             
-                                                            <option value="femme">mardi</option>						                                                             
-                                                            <option value="femme">mercredi</option>						                                                             
-                                                            <option value="femme">jeudi</option>						                                                             
-                                                            <option value="femme">vendredi</option>						                                                             
+                                                            <option value="">Séléctionner un Jour</option>						 
+                                                            <option value="samedi">Samedi</option>						 
+                                                            <option value="dimanche">dimanche</option>						                                                             
+                                                            <option value="lundi">lundi</option>						                                                             
+                                                            <option value="mardi">mardi</option>						                                                             
+                                                            <option value="mercredi">mercredi</option>						                                                             
+                                                            <option value="jeudi">jeudi</option>						                                                             
+                                                            <option value="vendredi">vendredi</option>						                                                             
                                                         </select>
                                                     </div>
-                                                    <!-- <div class="form-group">
-                                                        <label>Fax</label>
-                                                        <input type="text" value="{{old('fax')}}" name="fax" class="form-control">
-                                                    </div> -->
                                                 </div>
-
-
-                                                <div class ="col-sm-4">
-                                                </div>
-
-
                                             </div>
                                     </div>
                                 </div>
@@ -79,10 +70,10 @@
                                                 <div class="form-group" id="dynamic_form">
                                                     <div class="row">
                                                         <div class="col-md-4">
-                                                            <input type="text" name="debut" id="debut" placeholder="Heure Début" class="form-control debuts">
+                                                            <input type="time" name="debut" id="debut" placeholder="Heure Début" class="form-control debuts">
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <input type="number" class="form-control fins" name="fin" id="fin" placeholder="Heure Fin" >
+                                                            <input type="time" class="form-control fins" name="fin" id="fin" placeholder="Heure Fin" >
                                                         </div>
 
                                                         <div class="button-group">

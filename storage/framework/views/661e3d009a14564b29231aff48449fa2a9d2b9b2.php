@@ -36,9 +36,32 @@
                                             <?php $__currentLoopData = $crenaus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $crenau): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
                                                 <td><?php echo e($crenau->id ?? ''); ?></td>
-                                                <td><?php echo e($crenau->type ?? ''); ?></td>
+                                                <td>
+                                                    <?php if($crenau->type = "homme"): ?>
+                                                        <span class="badge badge-info">
+                                                        <?php echo e($crenau->type ?? ''); ?>
+
+                                                        </span>                                                    
+                                                    <?php else: ?>
+                                                        <span class="badge badge-danger">
+                                                        <?php echo e($crenau->type ?? ''); ?>
+
+                                                        </span>
+                                                    <?php endif; ?>
+                                                </td>
                                                 <td><?php echo e($crenau->jour ?? ''); ?></td>
-                                                <td><?php echo e($crenau->plage ?? ''); ?></td>
+
+                                                <?php 
+                                                    $plage = json_decode($crenau->plage);
+                                                ?>
+                                                <td>
+                                                    <?php $__currentLoopData = $plage; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <?php echo e($p->debut ?? ''); ?>
+
+                                                            -
+                                                        <?php echo e($p->fin ?? ''); ?>                                                         
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </td>
                                                 <td>
                                                 <a class="btn btn-danger text-white"  onclick="return confirm('Are you sure?')"  href="<?php echo e(route('crenau.destroy',['crenau'=>$crenau->id])); ?>">Supprimer</a>
                                                 <a class="btn btn-info text-white"  href="<?php echo e(route('crenau.edit',['crenau'=>$crenau->id])); ?>">Edit</a>

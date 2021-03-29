@@ -1,46 +1,72 @@
 @extends('layouts.master')
 
-@section('page_wrapper')
-    @include('includes.settings')
-@endsection
+
 
 @section('content')
 
+<div class="container-fluid">
 
-<div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <a href="{{route('setting.create')}}"><i class="fa fa-plus"></i> Ajouter setting</a>
-                                </h4>
-                                
-                                <div class="table-responsive">
-                                    <table id="zero_config" id="DataTable" class="table table-striped table-bordered no-wrap">
-                                        <thead>
-                                            <tr>
-                                                <th>Code</th>
-                                                <th>Determination</th>
-                                                <th>Duree</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($settings as $setting)
-                                            <tr>
-                                                <td>{{$setting->id }}</td>
-                                                <td>{{$setting->determination}}</td>
-                                                <td>{{$setting->duree ?? ''}}</td>
-                                                <td>
-                                                    <a class="btn btn-info text-white" href="{{route('setting.edit',['setting'=>$setting->id])}}"><i class="fa fa-edit"></i></a>
-                                                    <a href="{{route('setting.destroy',['setting'=>$setting->id])}}" onclick="return confirm('Etes vous sure ?')"  class="btn btn-danger text-white"><i class="fa fa-window-close"></i></a>
-                                                </td>
-                                            </tr>
+                        <div class="row">
 
-                                            @endforeach                                            
-                                        </tbody>
-                                    </table>
+                            <div class="col-lg-12">
+                                <div class="card mt-2">
+                                    <div class="card-header"><h3 class="font-weight-light my-4"> Paramètre de l'application  </h3></div>
+                                    <div class="card-body">
+                                        <form role="form" action="{{route('setting.store')}}" method="post">
+                                        @csrf
+
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Titre Général :</label>
+                                                        <input type="text" required value="{{old('titre')}}" name="titre" class="form-control">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>Adresse</label>
+                                                        <input type="text" value="{{old('adresse')}}" name="adresse" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Téléphone</label>
+                                                        <input type="text" value="{{old('telephone')}}" name="telephone" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Username:</label>
+                                                        <input type="text" value="{{old('username')}}" name="username" class="form-control">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>mot de passe</label>
+                                                        <input type="text" value="{{old('password')}}" name="password" class="form-control">
+                                                    </div>
+                                                </div>
+
+
+                                                <div class ="col-sm-4">
+                                                    <div class="preview text-center">
+                                                        <img class="preview-img" src="{{asset('img/account.png')}}" alt="Preview Image" width="200" height="200" for="UploadedFile"/>
+                                                        <div class="browse-button">
+                                                            <i class="fa fa-pencil-alt"></i>
+                                                            <input style="" type="file" name="UploadedFile" id="UploadedFile"/>
+                                                        </div>
+                                                        <span class="Error"></span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                    </div>
                                 </div>
+
+
+
+
+
+
                             </div>
+
                         </div>
 
-
+                    </div>
 @endsection
+
+

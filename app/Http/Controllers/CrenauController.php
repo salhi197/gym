@@ -45,13 +45,10 @@ class CrenauController extends Controller
         $crenau->type = $request['type'];
         $crenau->jour = $request['jour'];
         foreach ($request['dynamic_form']['dynamic_form'] as $array) {
-            dump($array);
             array_push($plage,$array);
-
         }    
         $plage = json_encode($plage);
         $crenau->plage= $plage;
-
         try {
             $crenau->save();
         } catch (\Throwable $th) {
@@ -75,15 +72,8 @@ class CrenauController extends Controller
 
     public function edit($id_Crenau)
     {
-
-        $operateurs1 = Operateur::where('type',"1")->get();
-        $operateurs2 = Operateur::where('type',"2")->get();
-        $produits = Produit::all();
-        $clients = Client::all();
-        $categories = Categorie::all();
-        $crenau = Crenau::find($id_Crenau);
-    
-        return view('crenaus.edit',compact('Crenau','operateurs1','operateurs2','produits','categories','clients'));
+        $crenau = Crenau::find($id_Crenau);    
+        return view('crenaus.edit',compact('crenau'));
     }
 
     public function update(Request $request,$crenau_id)
