@@ -37,13 +37,15 @@
                                                     onclick="return confirm('etes vous sure  ?')"
                                                     class="btn btn-danger text-white"><i class="fa fa-trash"></i> &nbsp; </a>
 
-                                                    <a  href="{{route('abonnement.edit',['abonnement'=>$abonnement->id])}}"
-                                                    class="btn btn-info text-white"><i class="fa fa-edit"></i> &nbsp; </a>
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$abonnement->id}}">
+                                                        <i class="fa fa-plus"></i> Modifer
+                                                    </button>
+
 
                                                 </div>
                                             </td>
                                         </tr>
-
+                                        @include('includes.modals.editabo')
                                         @endforeach
                                         </tbody>
 
@@ -72,6 +74,29 @@
       <div class="modal-body">
             <form id="abonnementFform" action="{{route('abonnement.create')}}" method="post" enctype="multipart/form-data">
             @csrf
+            <div class="form-group">
+                <label>Type: </label>
+                    <div class="form-check">
+                        <input class="form-check-input" value="homme" type="radio" name="type" id="type1">
+                        <label class="form-check-label" for="type1">
+                            Homme
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" value="femme" type="radio" name="type" id="type2" checked>
+                        <label class="form-check-label" for="type2">
+                            Femme
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" value="mixte" type="radio" name="type" id="type2" checked>
+                        <label class="form-check-label" for="type2">
+                            Mixte (Homme & Femme)
+                        </label>
+                    </div>
+                </div>
+
+
                 <div class="form-group">
                     <label class="small mb-1" for="inputFirstName">Titre Abonnement: </label>
                     <input type="text" name="label"  class="form-control"/>

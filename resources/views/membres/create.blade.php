@@ -93,6 +93,15 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
+                                                        <label>Type :</label>
+                                                        <select class="form-control" name="sexe">
+                                                            <option value="homme">Homme</option>						 
+                                                            <option value="femme">Femme</option>	
+                                                            <option value="mixte">mixte</option>						                                                             
+                                                        </select>
+                                                    </div>
+                                                
+                                                    <div class="form-group">
                                                         <label>Abonnement</label>
                                                         <select class="form-control" id="abonnement" name="abonnement">
                                                             <option value="">séléctionner un abonnement</option>

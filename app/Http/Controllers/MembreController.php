@@ -49,6 +49,8 @@ class MembreController extends Controller
         $membre->sexe = $request['sexe'];
         $membre->naissance = $request['naissance'];
         $membre->photo = $request['photo'];
+        $membre->email = $request['email'];
+        $membre->sang = $request['sang'];
         // $membre->matricule = $request['matricule'];
         // $membre->etat = $request['etat'];                
         if($request->file('image')){

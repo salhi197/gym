@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MakeSangNull extends Migration
+class AddTypeToAbo extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class MakeSangNull extends Migration
      */
     public function up()
     {
-        Schema::table('membres', function($table)
-        {
-//           $table->string('sang', 20)->nullable()->change(); 
-        });
-            
-    }
+        Schema::table('abonnements', function (Blueprint $table) {
+            $table->string('type')->nullable();
+       });
+   }
 
     /**
      * Reverse the migrations.

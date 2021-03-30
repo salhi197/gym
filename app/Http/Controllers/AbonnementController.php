@@ -41,6 +41,7 @@ class AbonnementController extends Controller
         ]);
         $abonnement = new Abonnement();
         $abonnement->label= $request['label'];
+        $abonnement->type= $request['type'];
         $abonnement->tarif= $request['tarif'];
         $abonnement->duree= $request['duree'];
         $abonnement->nbrsemaine= $request['nbrsemaine'];

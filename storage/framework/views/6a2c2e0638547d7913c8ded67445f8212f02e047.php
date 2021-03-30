@@ -52,7 +52,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="<?php echo e(route('crenau.index')); ?>" class="nav-link">Rapports</a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo e(route('abonnement.index')); ?>" class="nav-link">Paramètres</a>
+            <a href="<?php echo e(route('setting.index')); ?>" class="nav-link">Paramètres</a>
           </li>
 
           <!-- <li class="nav-item">

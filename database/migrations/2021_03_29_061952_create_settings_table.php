@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCrenausTable extends Migration
+class CreateSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateCrenausTable extends Migration
      */
     public function up()
     {
-        Schema::create('crenaus', function (Blueprint $table) {
+        Schema::create('settings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type');
-            $table->string('jour');
-            $table->longText('plage');
+            $table->string('titre')->nullable();
+            $table->longText('name')->nullable();
+            $table->longText('value')->nullable();                    
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateCrenausTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('crenaus');
+        Schema::dropIfExists('settings');
     }
 }

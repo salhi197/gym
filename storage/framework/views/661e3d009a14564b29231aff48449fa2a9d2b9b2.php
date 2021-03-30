@@ -16,59 +16,57 @@
                     <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                    <a  class="btn btn-primary" href="<?php echo e(route('crenau.create')); ?>">
                                         <i class="fa fa-plus"></i> Ajouter crenau
-                                    </button>
+                                    </a>
                                 </h4>
                                 
                                 <div class="table-responsive">
                                     <table id="zero_config" id="DataTable" class="table table-striped table-bordered no-wrap">
                                         <thead>
                                             <tr>
-                                                <th>debut</th>
-                                                <th>fin</th>
-                                                <th>reste</th>
-                                                <th>nbr seances</th>
-                                                <th>abonnement</th>
-                                                <th>etat</th>
-                                                <th>total</th>
-                                                <th>remise</th>
-                                                <th>nbrmois</th>
-                                                <th>versement</th>
-                                                
+                                                <th>#</th>
+                                                <th>Type</th>
+                                                <th>Jour</th>
+                                                <th>Plage Horraire</th>                                                
                                                 <th>actions</th>
-                                                
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php $__currentLoopData = $crenaus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $crenau): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
-                                                <td><?php echo e($crenau->debut ?? ''); ?></td>
-                                                <td><?php echo e($crenau->fin ?? ''); ?></td>
-                                                <td><?php echo e($crenau->reste ?? ''); ?></td>
-                                                <td style="text-align:center;"><?php echo e($crenau->nbsseance ?? ''); ?></td>
-                                                <td><?php echo e($crenau->getAbonnement()['label'] ?? ''); ?></td>
+                                                <td><?php echo e($crenau->id ?? ''); ?></td>
                                                 <td>
-                                                    <span class="badge badge-info">
-                                                    <?php echo e($crenau->etat ?? ''); ?>
+                                                    <?php if($crenau->type = "homme"): ?>
+                                                        <span class="badge badge-info">
+                                                        <?php echo e($crenau->type ?? ''); ?>
 
-                                                    </span>
+                                                        </span>                                                    
+                                                    <?php else: ?>
+                                                        <span class="badge badge-danger">
+                                                        <?php echo e($crenau->type ?? ''); ?>
+
+                                                        </span>
+                                                    <?php endif; ?>
                                                 </td>
-                                                <td><?php echo e($crenau->total ?? ''); ?>DA</td>
-                                                <td><?php echo e($crenau->remise ?? ''); ?></td>
+                                                <td><?php echo e($crenau->jour ?? ''); ?></td>
 
-                                                <td style="text-align:center;">
-                                                    <?php echo e($crenau->nbrmois ?? ''); ?>
-
-                                                </td>                                            
-                                                <td><?php echo e($crenau->versement ?? ''); ?> DA</td>
-
+                                                <?php 
+                                                    $plage = json_decode($crenau->plage);
+                                                ?>
                                                 <td>
-                                                <a class="btn btn-info text-white" href="<?php echo e(route('crenau.presence',['crenau'=>$crenau->id])); ?>"><i class="fa fa-list"></i></a>
+                                                    <?php $__currentLoopData = $plage; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <?php echo e($p->debut ?? ''); ?>
+
+                                                            -
+                                                        <?php echo e($p->fin ?? ''); ?>                                                         
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </td>
+                                                <td>
                                                 <a class="btn btn-danger text-white"  onclick="return confirm('Are you sure?')"  href="<?php echo e(route('crenau.destroy',['crenau'=>$crenau->id])); ?>">Supprimer</a>
+                                                <a class="btn btn-info text-white"  href="<?php echo e(route('crenau.edit',['crenau'=>$crenau->id])); ?>">Edit</a>
                                                 </td>
                                             </tr>
-                                                <!-- <?php echo $__env->make('includes.modals.editcrenau',['crenau'=>$crenau], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> -->
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>                                            
                                         </tbody>
                                     </table>

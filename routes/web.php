@@ -33,13 +33,13 @@ Route::group(['prefix' => 'produit', 'as' => 'produit'], function () {
     Route::post('/update/{produit}', ['as' => '.update', 'uses' => 'ProduitController@update']);    
 });
 
-Route::group(['prefix' => 'item', 'as' => 'item'], function () {
-    Route::get('/', ['as' => '.index', 'uses' => 'ItemController@index']);
-    Route::get('/create',['as'=>'.create', 'uses' => 'ItemController@create']);
-    Route::post('/create', ['as' => '.store', 'uses' => 'ItemController@store']);
-    Route::get('/destroy/{id_demande}', ['as' => '.destroy', 'uses' => 'ItemController@destroy']); 
-    Route::get('/edit/{id_demande}', ['as' => '.edit', 'uses' => 'ItemController@edit']);
-    Route::post('/update/{item}', ['as' => '.update', 'uses' => 'ItemController@update']);    
+Route::group(['prefix' => 'setting', 'as' => 'setting'], function () {
+    Route::get('/', ['as' => '.index', 'uses' => 'SettingController@index']);
+    Route::get('/create',['as'=>'.create', 'uses' => 'SettingController@create']);
+    Route::post('/create', ['as' => '.store', 'uses' => 'SettingController@store']);
+    Route::get('/destroy/{id_demande}', ['as' => '.destroy', 'uses' => 'SettingController@destroy']); 
+    Route::get('/edit/{id_demande}', ['as' => '.edit', 'uses' => 'SettingController@edit']);
+    Route::post('/update/{setting}', ['as' => '.update', 'uses' => 'SettingController@update']);    
 });
 
 
@@ -120,10 +120,10 @@ Route::group(['prefix' => 'membre', 'as' => 'membre'], function () {
     Route::get('/inscriptions/{membre}', ['as' => '.inscriptions', 'uses' => 'MembreController@inscriptions']);
     Route::get('/create',['as'=>'.create', 'uses' => 'MembreController@create']);
     Route::post('/create', ['as' => '.store', 'uses' => 'MembreController@store']);
-    Route::get('/destroy/{id_demande}', ['as' => '.destroy', 'uses' => 'MembreController@destroy']); 
-    Route::get('/state/{id_demande}', ['as' => '.state', 'uses' => 'MembreController@state']); 
-    Route::get('/facture/{id_demande}', ['as' => '.facture', 'uses' => 'MembreController@facture']); 
-    Route::get('/edit/{id_demande}', ['as' => '.edit', 'uses' => 'MembreController@edit']);
+    Route::get('/destroy/{id_membre}', ['as' => '.destroy', 'uses' => 'MembreController@destroy']); 
+    Route::get('/state/{id_membre}', ['as' => '.state', 'uses' => 'MembreController@state']); 
+    Route::get('/facture/{id_membre}', ['as' => '.facture', 'uses' => 'MembreController@facture']); 
+    Route::get('/edit/{id_membre}', ['as' => '.edit', 'uses' => 'MembreController@edit']);
     Route::post('/update/{membre}', ['as' => '.update', 'uses' => 'MembreController@update']);    
     
 });

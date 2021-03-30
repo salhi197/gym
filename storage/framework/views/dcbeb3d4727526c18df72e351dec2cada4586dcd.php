@@ -1,8 +1,8 @@
-@extends('layouts.master')
 
 
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 
                 <div class="container-fluid">
                         <div class="row">
@@ -10,26 +10,26 @@
                                 <div class="card mt-2">
                                     <div class="card-header"><h3 class="font-weight-light my-4"> Nouveau Crénaux : </h3></div>
                                     <div class="card-body">
-                                        <form role="form" action="{{route('crenau.update',['crenau'=>$crenau->id])}}" method="post">
-                                        @csrf
+                                        <form role="form" action="<?php echo e(route('crenau.store')); ?>" method="post">
+                                        <?php echo csrf_field(); ?>
                                             <div class="row">
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label>Type: </label>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" value="homme" type="radio" name="type" @if($crenau->type=='homme') checked @endif id="type1">
+                                                            <input class="form-check-input" value="homme" type="radio" name="type" id="type1">
                                                             <label class="form-check-label" for="type1">
                                                                 Homme
                                                             </label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" value="femme" type="radio" name="type" @if($crenau->type=='femme') checked @endif id="type2" checked>
+                                                            <input class="form-check-input" value="femme" type="radio" name="type" id="type2" checked>
                                                             <label class="form-check-label" for="type2">
                                                                 Femme
                                                             </label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" value="mixte" type="radio" name="type" @if($crenau->type=='mixte') checked @endif id="type2" checked>
+                                                            <input class="form-check-input" value="mixte" type="radio" name="type" id="type2" checked>
                                                             <label class="form-check-label" for="type2">
                                                                 Mixte (Homme & Femme)
                                                             </label>
@@ -44,13 +44,13 @@
                                                         </label>
                                                         <select class="form-control" name="jour">
                                                             <option value="">Séléctionner un Jour</option>						 
-                                                            <option value="samedi" @if($crenau->jour="samedi") selected @endif>Samedi</option>						 
-                                                            <option value="dimanche" @if($crenau->jour="dimanche") selected @endif>dimanche</option>						                                                             
-                                                            <option value="lundi" @if($crenau->jour="lundi") selected @endif>lundi</option>						                                                             
-                                                            <option value="mardi" @if($crenau->jour="mardi") selected @endif>mardi</option>						                                                             
-                                                            <option value="mercredi" @if($crenau->jour="mercredi") selected @endif>mercredi</option>						                                                             
-                                                            <option value="jeudi" @if($crenau->jour="jeudi") selected @endif>jeudi</option>						                                                             
-                                                            <option value="vendredi" @if($crenau->jour="vendredi") selected @endif>vendredi</option>						                                                             
+                                                            <option value="samedi">Samedi</option>						 
+                                                            <option value="dimanche">dimanche</option>						                                                             
+                                                            <option value="lundi">lundi</option>						                                                             
+                                                            <option value="mardi">mardi</option>						                                                             
+                                                            <option value="mercredi">mercredi</option>						                                                             
+                                                            <option value="jeudi">jeudi</option>						                                                             
+                                                            <option value="vendredi">vendredi</option>						                                                             
                                                         </select>
                                                     </div>
                                                 </div>
@@ -97,10 +97,10 @@
                         </div>
 
                     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('scripts')
-<script src="{{asset('js/dynamic-form.js')}}"></script>
+<?php $__env->startSection('scripts'); ?>
+<script src="<?php echo e(asset('js/dynamic-form.js')); ?>"></script>
 
 <script>
 $(document).ready(function() {
@@ -132,7 +132,9 @@ $(document).ready(function() {
 
 
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -10,6 +10,7 @@ class Abonnement extends Model
         'label',
         'tarif',
         'duree',
+        'type',
         'nbrsemaine',
     ];
 }

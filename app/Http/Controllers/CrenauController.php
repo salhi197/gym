@@ -30,65 +30,38 @@ class CrenauController extends Controller
     }
 
     public function create()
-    {
-        $operateurs1 = Operateur::where('type',"1")->get();
-        $operateurs2 = Operateur::where('type',"2")->get();
-        $produits = Produit::all();
-        $clients = Client::all();
-        $categories = Categorie::all();
-
-        
-        return view('crenaus.create',compact('operateurs1','operateurs2','produits','categories','clients'));
+    {        
+        return view('crenaus.create');
     }
-
     
     public function store(Request $request)
     {
-
+        $plage = array();
         $validated = $request->validate([
             'type'=>'required',
-            'categorie'=>'required',
-            'produit'=>'required',
-            'marque'=>'required',
-            'fabrication'=>'required',
-            'peremption'=>'required',
-            'prelevement'=>'required',
-            'reception'=>'required',
-            'Crenau'=>'required',
-            'client'=>'required',
-            'lot'=>'required',
-            'valeur'=>'required',
-            'contenance'=>'required'
+            'jour'=>'required'
         ]);    
-        $Crenau = new Crenau();   
-        $Crenau->type = $request['type'];
-        $Crenau->categorie = $request['categorie'];
-        $Crenau->produit = $request['produit'];
-        $Crenau->marque = $request['marque'];
-        $Crenau->fabrication = $request['fabrication'];
-        $Crenau->peremption = $request['peremption'];
-        $Crenau->prelevement = $request['prelevement'];
-        $Crenau->reception = $request['reception'];
-        $Crenau->Crenau = $request['Crenau'];
-        $Crenau->operateur1 = $request['operateur1'];
-        $Crenau->operateur2 = $request['operateur2'];
-        $Crenau->client = $request['client'];
-        $Crenau->lot = $request['lot'];
-        $Crenau->valeur = $request['valeur'];
-        $Crenau->contenance = $request['contenance'];
+        $crenau = new Crenau();   
+        $crenau->type = $request['type'];
+        $crenau->jour = $request['jour'];
+        foreach ($request['dynamic_form']['dynamic_form'] as $array) {
+            array_push($plage,$array);
+        }    
+        $plage = json_encode($plage);
+        $crenau->plage= $plage;
         try {
-            $Crenau->save();
+            $crenau->save();
         } catch (\Throwable $th) {
             return Redirect::back()->withInput()->with('error', $th->getMessage());        
         }
-        return redirect()->route('Crenau.index')->with('success', ' insertion efféctué ');        
+        return redirect()->route('crenau.index')->with('success', ' insertion efféctué ');        
     }
 
     public function print($id_Crenau)
     {
-        $Crenau = Crenau::find($id_Crenau);
+        $crenau = Crenau::find($id_Crenau);
         $dompdf = new Dompdf();
-        $html = Template::Bulletin($Crenau);
+        $html = Template::Bulletin($crenau);
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4');
         $dompdf->render();
@@ -99,49 +72,42 @@ class CrenauController extends Controller
 
     public function edit($id_Crenau)
     {
-
-        $operateurs1 = Operateur::where('type',"1")->get();
-        $operateurs2 = Operateur::where('type',"2")->get();
-        $produits = Produit::all();
-        $clients = Client::all();
-        $categories = Categorie::all();
-        $Crenau = Crenau::find($id_Crenau);
-    
-        return view('crenaus.edit',compact('Crenau','operateurs1','operateurs2','produits','categories','clients'));
+        $crenau = Crenau::find($id_Crenau);    
+        return view('crenaus.edit',compact('crenau'));
     }
 
-    public function update(Request $request,$Crenau_id)
+    public function update(Request $request,$crenau_id)
     {
-        $Crenau = Crenau::find($Crenau_id);  
-        $Crenau->type = $request['type'];
-        $Crenau->categorie = $request['categorie'];
-        $Crenau->produit = $request['produit'];
-        $Crenau->marque = $request['marque'];
-        $Crenau->fabrication = $request['fabrication'];
-        $Crenau->peremption = $request['peremption'];
-        $Crenau->prelevement = $request['prelevement'];
-        $Crenau->reception = $request['reception'];
-        $Crenau->Crenau = $request['Crenau'];
-        $Crenau->operateur1 = $request['operateur1'];
-        $Crenau->operateur2 = $request['operateur2'];
-        $Crenau->client = $request['client'];
-        $Crenau->lot = $request['lot'];
-        $Crenau->valeur = $request['valeur'];
-        $Crenau->contenance = $request['contenance'];
+        $crenau = Crenau::find($crenau_id);  
+        $crenau->type = $request['type'];
+        $crenau->categorie = $request['categorie'];
+        $crenau->produit = $request['produit'];
+        $crenau->marque = $request['marque'];
+        $crenau->fabrication = $request['fabrication'];
+        $crenau->peremption = $request['peremption'];
+        $crenau->prelevement = $request['prelevement'];
+        $crenau->reception = $request['reception'];
+        $crenau->Crenau = $request['Crenau'];
+        $crenau->operateur1 = $request['operateur1'];
+        $crenau->operateur2 = $request['operateur2'];
+        $crenau->client = $request['client'];
+        $crenau->lot = $request['lot'];
+        $crenau->valeur = $request['valeur'];
+        $crenau->contenance = $request['contenance'];
         try {
-            $Crenau->save();
+            $crenau->save();
         } catch (\Throwable $th) {
             return Redirect::back()->withInput()->with('error', $th->getMessage());        
         }
-        return redirect()->route('Crenau.index')->with('success', ' insertion efféctué ');        
+        return redirect()->route('crenau.index')->with('success', ' insertion efféctué ');        
  
     }
 
     public function destroy($id_Crenau)
     {
-        $Crenau = Crenau::find($id_Crenau);
-        $Crenau->delete();
-        return redirect()->route('Crenau.index')->with('success', 'supprission terminé');        
+        $crenau = Crenau::find($id_Crenau);
+        $crenau->delete();
+        return redirect()->route('crenau.index')->with('success', 'supprission terminé');        
     }
 
 

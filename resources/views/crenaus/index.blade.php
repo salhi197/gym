@@ -16,57 +16,54 @@
                     <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                    <a  class="btn btn-primary" href="{{route('crenau.create')}}">
                                         <i class="fa fa-plus"></i> Ajouter crenau
-                                    </button>
+                                    </a>
                                 </h4>
                                 
                                 <div class="table-responsive">
                                     <table id="zero_config" id="DataTable" class="table table-striped table-bordered no-wrap">
                                         <thead>
                                             <tr>
-                                                <th>debut</th>
-                                                <th>fin</th>
-                                                <th>reste</th>
-                                                <th>nbr seances</th>
-                                                <th>abonnement</th>
-                                                <th>etat</th>
-                                                <th>total</th>
-                                                <th>remise</th>
-                                                <th>nbrmois</th>
-                                                <th>versement</th>
-                                                
+                                                <th>#</th>
+                                                <th>Type</th>
+                                                <th>Jour</th>
+                                                <th>Plage Horraire</th>                                                
                                                 <th>actions</th>
-                                                
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($crenaus as $crenau)
                                             <tr>
-                                                <td>{{$crenau->debut ?? ''}}</td>
-                                                <td>{{$crenau->fin ?? ''}}</td>
-                                                <td>{{$crenau->reste ?? ''}}</td>
-                                                <td style="text-align:center;">{{$crenau->nbsseance ?? ''}}</td>
-                                                <td>{{$crenau->getAbonnement()['label'] ?? ''}}</td>
+                                                <td>{{$crenau->id ?? ''}}</td>
                                                 <td>
-                                                    <span class="badge badge-info">
-                                                    {{$crenau->etat ?? ''}}
-                                                    </span>
+                                                    @if($crenau->type = "homme")
+                                                        <span class="badge badge-info">
+                                                        {{$crenau->type ?? ''}}
+                                                        </span>                                                    
+                                                    @else
+                                                        <span class="badge badge-danger">
+                                                        {{$crenau->type ?? ''}}
+                                                        </span>
+                                                    @endif
                                                 </td>
-                                                <td>{{$crenau->total ?? ''}}DA</td>
-                                                <td>{{$crenau->remise ?? ''}}</td>
+                                                <td>{{$crenau->jour ?? ''}}</td>
 
-                                                <td style="text-align:center;">
-                                                    {{$crenau->nbrmois ?? ''}}
-                                                </td>                                            
-                                                <td>{{$crenau->versement ?? ''}} DA</td>
-
+                                                <?php 
+                                                    $plage = json_decode($crenau->plage);
+                                                ?>
                                                 <td>
-                                                <a class="btn btn-info text-white" href="{{route('crenau.presence',['crenau'=>$crenau->id])}}"><i class="fa fa-list"></i></a>
+                                                    @foreach($plage as $p)
+                                                        {{$p->debut ?? ''}}
+                                                            -
+                                                        {{$p->fin ?? ''}}                                                         
+                                                    @endforeach
+                                                </td>
+                                                <td>
                                                 <a class="btn btn-danger text-white"  onclick="return confirm('Are you sure?')"  href="{{route('crenau.destroy',['crenau'=>$crenau->id])}}">Supprimer</a>
+                                                <a class="btn btn-info text-white"  href="{{route('crenau.edit',['crenau'=>$crenau->id])}}">Edit</a>
                                                 </td>
                                             </tr>
-                                                <!-- @include('includes.modals.editcrenau',['crenau'=>$crenau]) -->
                                             @endforeach                                            
                                         </tbody>
                                     </table>
