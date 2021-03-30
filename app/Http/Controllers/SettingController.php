@@ -40,12 +40,12 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
-        $setting = new Setting();   
-        $setting->determination = $request['determination'];
-        $setting->duree = $request['duree'];
-        $setting->aspect = $request['aspect'];
-        $setting->save();
-        return redirect()->route('setting.index')->with('success', 'Inséré avec succés ');        
+        Setting::setSetting('titre',$request['titre']);
+        Setting::setSetting('addresse',$request['addresse']);
+        Setting::setSetting('telephone',$request['telephone']);
+        // Setting::setSetting('username',$request['username']);
+        // Setting::setSetting('password',$request['password']);
+        return redirect()->route('setting.index')->with('success', 'Success ');        
     }
 
         public function show($id_setting)

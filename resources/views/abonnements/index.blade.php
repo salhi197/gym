@@ -37,13 +37,15 @@
                                                     onclick="return confirm('etes vous sure  ?')"
                                                     class="btn btn-danger text-white"><i class="fa fa-trash"></i> &nbsp; </a>
 
-                                                    <a  href="{{route('abonnement.edit',['abonnement'=>$abonnement->id])}}"
-                                                    class="btn btn-info text-white"><i class="fa fa-edit"></i> &nbsp; </a>
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$abonnement->id}}">
+                                                        <i class="fa fa-plus"></i> Modifer
+                                                    </button>
+
 
                                                 </div>
                                             </td>
                                         </tr>
-
+                                        @include('includes.modals.editabo')
                                         @endforeach
                                         </tbody>
 
