@@ -28,23 +28,99 @@
                     </div>
             </div> 
             <?php endif; ?>
-                <div class="card mb-4">
+               <div class="card mb-4">
                 <br>
-            <h1 style="text-align: center; color: black; " ><B>Tableau de bord</B></h1>
-                <div class="card-body">
-                    <div class="table-responsive">
+                    <!--     <h1 style="text-align: center; color: black; " ><B>Tableau de bord</B></h1>
+                        <div class="card-body">
+                            <div class="table-responsive">
 
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-    
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
-  
+                                    </table>
+            
+
+          
 
 
 
 
-            </div>
-        </div>
-    </div>
+                              </div>
+                         </div> -->
+
+                            <div class="card-group">
+                    <div class="card border-right">
+                        <div class="card-body">
+                            <div class="d-flex d-lg-flex d-md-block align-items-center">
+                                <div>
+                                    <div class="d-inline-flex align-items-center">
+                                        <h2 class="text-dark mb-1 font-weight-medium"><B><?php echo e($nbmembres); ?> Adhérents</B></h2> 
+                                        
+                                        <h2 class="text-dark mb-1 font-weight-medium"><B><?php echo e($nbmembres); ?> Adhérents</B></h2>
+                                        
+                                    </div>
+                                    
+                                </div>
+                                <div class="ml-auto mt-md-3 mt-lg-0">
+                                    <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-right">
+                        <div class="card-body" >
+                            <div class="d-flex d-lg-flex d-md-block align-items-center">
+                                
+                                <div>
+                                <h2 style="text-align: center;  "  ><B>Recette d'aujourd'hui</B></h2>
+                                    <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><sup
+                                            class="set-doller">DA</sup>Recette d'aujourd'hui</h2>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total d'aujourd'hui
+                                    </h6>
+                                    
+                                    <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><sup
+                                            class="set-doller">DA</sup>versementjournee</h2>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Versement d'aujourd'hui
+                                    </h6>
+
+                                    <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><sup
+                                            class="set-doller">DA</sup>restejournee</h2>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Reste d'aujourd'hui
+                                    </h6>
+                                    
+                                </div>
+                                <div class="ml-auto mt-md-3 mt-lg-0">
+                                    <span class="opacity-7 text-muted"><i data-feather="dollar-sign"></i></span>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="card border-right">
+                        <div class="card-body">
+                            <div class="d-flex d-lg-flex d-md-block align-items-center">
+                                <div>
+                                     <h2 style="text-align: center;"  ><B>Recette du Mois</B></h2>
+                                    <div class="d-inline-flex align-items-center">
+                                        <h2 style="text-align: center;  " class="text-dark mb-1 font-weight-medium">recettemois DA</h2>
+                                    </div>
+                                    <h6 style="text-align: center;  " class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total du mois</h6>
+
+                                    <div class="d-inline-flex align-items-center">
+                                        <h2 style="text-align: center;  " class="text-dark mb-1 font-weight-medium">versementmois DA</h2>
+                                    </div>
+                                    <h6 style="text-align: center;  " class="text-muted font-weight-normal mb-0 w-100 text-truncate">Versement du mois</h6>
+                                </div>
+
+                                
+
+                                <div class="ml-auto mt-md-3 mt-lg-0">
+                                    <span class="opacity-7 text-muted"><i data-feather="file-plus"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+                 </div> 
         </div>
 
 
@@ -64,7 +140,7 @@ $(document).ready(function() {
                              .substring(0,3).toUpperCase());
         $('#time-part').html(momentNow.format('A hh:mm:ss'));
     }, 100);
-    aDatasets1 = [65,59,80,81,56,55,40,47];  
+aDatasets1 = [65,59,80,81,56,55,40,47];  
 aDatasets2 = [20,30,40,50,60,20,25,47];
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
