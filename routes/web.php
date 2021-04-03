@@ -71,6 +71,17 @@ Route::group(['prefix' => 'crenau', 'as' => 'crenau'], function () {
 });
 
 
+// Route::group(['prefix' => 'rapport', 'as' => 'rapport'], function () {
+//     Route::get('/', ['as' => '.index', 'uses' => 'RapportController@index']);
+//     Route::get('/create',['as'=>'.create', 'uses' => 'RapportController@create']);
+//     Route::post('/create', ['as' => '.store', 'uses' => 'RapportController@store']);
+//     Route::get('/destroy/{id_demande}', ['as' => '.destroy', 'uses' => 'RapportController@destroy']); 
+//     Route::get('/stock/{id_demande}', ['as' => '.stock', 'uses' => 'RapportController@stock']); 
+//     Route::get('/edit/{id_demande}', ['as' => '.edit', 'uses' => 'RapportController@edit']);
+//     Route::get('/print/{cd_rapport}', ['as' => '.print', 'uses' => 'RapportController@print']);
+//     Route::post('/update/{rapport}', ['as' => '.update', 'uses' => 'RapportController@update']);    
+// });
+
 Route::group(['prefix' => 'stock', 'as' => 'stock'], function () {
     Route::get('/', ['as' => '.index', 'uses' => 'StockController@index']);
     Route::get('/create',['as'=>'.create', 'uses' => 'StockController@create']);
@@ -172,4 +183,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth:admin'], function () {
     Route::view('/admin', 'admin');
 });
+
+Route::view('/rapport', 'rapport');
 

@@ -1,129 +1,229 @@
-@extends('layouts.admin')
+@extends('layouts.master')
+
 @section('content')
-                    <div class="container-fluid">
-                        <h1 class="mt-4"> Tableau de bord</h1>
-                      <div class="row">
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                          <div class="card border-left-primary shadow h-100 py-2">
-                            <div class="card-body">
-                              <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total commandes</div>
-                                  <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
-                                </div>
-                                <div class="col-auto">
-                                  <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+        <div class="container-fluid">
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                          <div class="card border-left-success shadow h-100 py-2">
-                            <div class="card-body">
-                              <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Livreur</div>
-                                  <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
-                                </div>
-                                <div class="col-auto">
-                                  <i class="fas fa-truck fa-2x text-gray-300"></i>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+        @if(Auth::guard('admin')->user()['is_super'] == 1)
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                          <div class="card border-left-info shadow h-100 py-2">
-                            <div class="card-body">
-                              <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total des produits</div>
-                                  <div class="row no-gutters align-items-center">
-                                    <div class="col-auto">
-                                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">3</div>
+            <div class="card-group">
+                    <div class="card border-right">
+                        <div class="card-body text-center">
+                            <div class="d-flex d-lg-flex d-md-block align-items-center">
+                                    <div class="d-inline-flex align-items-center">
+                                        <h2 class="text-dark mb-1 font-weight-medium text-center" id="time-part"></h2><br>
+                                    </div>                                    
+                                <div class="ml-auto mt-md-3 mt-lg-0">
+                                <h2 class="text-dark mb-1 font-weight-medium text-center" id="date-part"></h2>                                        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-right">
+                        <div class="card-body" >
+                            <div class="d-flex d-lg-flex d-md-block align-items-center">
+                            <canvas id="myChart" width="600" height="250"></canvas>                                
+                                <div class="ml-auto mt-md-3 mt-lg-0">
+                                    <span class="opacity-7 text-muted"><i data-feather="dollar-sign"></i></span>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+            </div> 
+            @endif
+               <div class="card mb-4">
+                <br>
+                    <!--     <h1 style="text-align: center; color: black; " ><B>Tableau de bord</B></h1>
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                                    </table>
+            
+
+          
+
+
+
+
+                              </div>
+                         </div> -->
+
+                            <div class="card-group">
+                    <div class="card border-right">
+                        <div class="card-body">
+                            <div class="d-flex d-lg-flex d-md-block align-items-center">
+                                <div>
+                                    <div class="d-inline-flex align-items-center">
+                                        <h2 class="text-dark mb-1 font-weight-medium"><B>{{$nbmembres}} Adhérents</B></h2> 
+                                        
+                                        <h2 class="text-dark mb-1 font-weight-medium"><B>{{$nbmembres}} Adhérents</B></h2>
+                                        
                                     </div>
-                                    <div class="col">
-                                      <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                      </div>
+                                    
+                                </div>
+                                <div class="ml-auto mt-md-3 mt-lg-0">
+                                    <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-right">
+                        <div class="card-body" >
+                            <div class="d-flex d-lg-flex d-md-block align-items-center">
+                                
+                                <div>
+                                <h2 style="text-align: center;  "  ><B>Recette d'aujourd'hui</B></h2>
+                                    <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><sup
+                                            class="set-doller">DA</sup>Recette d'aujourd'hui</h2>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total d'aujourd'hui
+                                    </h6>
+                                    
+                                    <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><sup
+                                            class="set-doller">DA</sup>versementjournee</h2>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Versement d'aujourd'hui
+                                    </h6>
+
+                                    <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><sup
+                                            class="set-doller">DA</sup>restejournee</h2>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Reste d'aujourd'hui
+                                    </h6>
+                                    
+                                </div>
+                                <div class="ml-auto mt-md-3 mt-lg-0">
+                                    <span class="opacity-7 text-muted"><i data-feather="dollar-sign"></i></span>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="card border-right">
+                        <div class="card-body">
+                            <div class="d-flex d-lg-flex d-md-block align-items-center">
+                                <div>
+                                     <h2 style="text-align: center;"  ><B>Recette du Mois</B></h2>
+                                    <div class="d-inline-flex align-items-center">
+                                        <h2 style="text-align: center;  " class="text-dark mb-1 font-weight-medium">recettemois DA</h2>
                                     </div>
-                                  </div>
-                                </div>
-                                <div class="col-auto">
-                                  <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                                    <h6 style="text-align: center;  " class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total du mois</h6>
 
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                          <div class="card border-left-warning shadow h-100 py-2">
-                            <div class="card-body">
-                              <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total Commerciaux</div>
-                                  <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                                    <div class="d-inline-flex align-items-center">
+                                        <h2 style="text-align: center;  " class="text-dark mb-1 font-weight-medium">versementmois DA</h2>
+                                    </div>
+                                    <h6 style="text-align: center;  " class="text-muted font-weight-normal mb-0 w-100 text-truncate">Versement du mois</h6>
                                 </div>
-                                <div class="col-auto">
-                                  <i class="fas fa-user-shield fa-2x text-gray-300"></i>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-primary text-white shadow">
-                    <div class="card-body">
-                        <i class="fas fa-list"></i>
-                        &nbsp;
-                        <a class="small text-white stretched-link" href="#">Mes Produits &nbsp;</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-success text-white shadow">
-                    <div class="card-body">
-                        <i class="fas fa-file-invoice-dollar"></i>
-                        &nbsp;
-                        <a class="small text-white stretched-link" href="{{route('commande.index')}}">Mes Commandes  &nbsp;</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-info text-white shadow">
-                    <div class="card-body">
-                        <i class="fas fa-plus"></i>
-                        &nbsp;
-                        <a class="small text-white stretched-link" href="{{route('livreur.show.create')}}">Ajouter Livreur &nbsp;</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-warning text-white shadow">
-                    <div class="card-body">
-                        <i class="fas fa-plus"></i>
-                        &nbsp;
-                        <a class="small text-white stretched-link" href="{{route('user.show.create')}}">Ajouter Commercial &nbsp;</a>
-                    </div>
-                  </div>
-                </div>
-            </div>
 
+                                
+
+                                <div class="ml-auto mt-md-3 mt-lg-0">
+                                    <span class="opacity-7 text-muted"><i data-feather="file-plus"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+                 </div> 
+        </div>
 
 
 @endsection
 
 
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<script>
+$(document).ready(function() {
+    var interval = setInterval(function() {
+        var momentNow = moment();
+        $('#date-part').html(momentNow.format('YYYY MMMM DD') + ' '
+                            + momentNow.format('dddd')
+                             .substring(0,3).toUpperCase());
+        $('#time-part').html(momentNow.format('A hh:mm:ss'));
+    }, 100);
+aDatasets1 = [65,59,80,81,56,55,40,47];  
+aDatasets2 = [20,30,40,50,60,20,25,47];
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Samedi", "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi","vendredi"],
+        
+        datasets: [ {
+              label: 'Homme',
+              fill:false,
+            data: aDatasets1,
+            backgroundColor: '#E91E63',
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+            ],
+            borderWidth: 1
+        },
+        
+        {
+            label: 'Femme',
+              fill:false,
+            data: aDatasets2,
+            backgroundColor: 
+                '#3F51B5'
+            ,
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+                'rgba(255,99,132,1)',
+            ],
+            borderWidth: 1
+        }
+        
+        ]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        },
+        title: {
+            display: true,
+            text: 'Nishi IT Institute'
+        },
+        responsive: true,
+        
+       tooltips: {
+            callbacks: {
+                labelColor: function(tooltipItem, chart) {
+                    return {
+                        borderColor: 'rgb(255, 0, 20)',
+                        backgroundColor: 'rgb(255,20, 0)'
+                    }
+                }
+            }
+        },
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'red',
+               
+            }
+        }
+    }
+});
+
+});
 
 
 
+</script>
+
+@endsection

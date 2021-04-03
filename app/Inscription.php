@@ -14,6 +14,7 @@ class Inscription extends Model
         'membre',
         'abonnement',
         'etat',
+        'type',
         'total',
         'remise',
         'nbrmois',

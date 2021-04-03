@@ -11,7 +11,7 @@
 <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="{{route('produit.create')}}"><i class="fa fa-plus"></i> Ajouter produit</a>
+                                    <a class="btn btn-info" href="{{route('produit.create')}}"><i class="fa fa-plus"></i> Ajouter produit</a>
                                 </h4>
                                 
                                 <div class="table-responsive">

@@ -1,7 +1,10 @@
 @extends('layouts.master')
 
 
+@section('styles')
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
+@endsection
 @section('content')
 
                 <div class="container-fluid">
@@ -23,8 +26,8 @@
                                                             </label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" value="femme" type="radio" name="type" id="type2" checked>
-                                                            <label class="form-check-label" for="type2">
+                                                            <input class="form-check-input" value="femme" type="radio" name="type" id="type0" checked>
+                                                            <label class="form-check-label" for="type0">
                                                                 Femme
                                                             </label>
                                                         </div>
@@ -70,10 +73,10 @@
                                                 <div class="form-group" id="dynamic_form">
                                                     <div class="row">
                                                         <div class="col-md-4">
-                                                            <input type="time" name="debut" id="debut" placeholder="Heure Début" class="form-control debuts">
+                                                            <input  name="debut" id="debut" placeholder="Heure Début" class="form-control timepicker debuts">
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <input type="time" class="form-control fins" name="fin" id="fin" placeholder="Heure Fin" >
+                                                            <input  class="form-control timepicker fins" name="fin" id="fin" placeholder="Heure Fin" >
                                                         </div>
 
                                                         <div class="button-group">
@@ -102,8 +105,26 @@
 @section('scripts')
 <script src="{{asset('js/dynamic-form.js')}}"></script>
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+
 <script>
 $(document).ready(function() {
+        
+    $('.timepicker').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 60,
+        minTime: '10',
+        maxTime: '12:00pm',
+        defaultTime: '11',
+        startTime: '10:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
+
+            
+
     var dynamic_form =  $("#dynamic_form").dynamicForm("#dynamic_form","#plus5", "#minus5", {
         limit:10,
         formPrefix : "dynamic_form",

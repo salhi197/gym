@@ -41,8 +41,10 @@ class MembreController extends Controller
 
     public function store(Request $request)
     {        
+        dd($request['versement']);
         $membre = new Membre();
         $membre->nom = $request['nom'];
+        $membre->matricule = $request['matricule'];
         $membre->prenom = $request['prenom'];
         $membre->telephone = $request['telephone'];
         $membre->adresse = $request['adresse'];
@@ -71,6 +73,7 @@ class MembreController extends Controller
          */
         $inscription = new Inscription();
         $inscription->debut=$request['debut'];
+        $inscription->type=$request['type'];
         $fin =  Carbon::parse($request['debut'])->addMonth($request['nbrmois'])->format('Y-m-d');
         $inscription->fin=$fin;
         $inscription->reste=$request['reste'];
@@ -235,6 +238,8 @@ class MembreController extends Controller
     public function update(Request $request,$membre_id)
     {
         $membre = Membre::find($membre_id);  
+     
+        $membre->matricule = $request['matricule'];
         $membre->nom = $request['nom'];
         $membre->prenom = $request['prenom'];
         $membre->telephone = $request['telephone'];

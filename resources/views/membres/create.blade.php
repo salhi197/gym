@@ -40,6 +40,13 @@
 
                                                 <div class ="col-sm-4">
                                                     <div class="form-group">
+                                                        <label>Code de Matricule</label>
+                                                        <input type="text" value="{{old('matricule')}}" name="matricule" class="form-control">
+
+                                                    </div>
+
+
+                                                    <div class="form-group">
                                                         <label>Genre</label>
                                                         <select class="form-control" name="sexe">
                                                             <option value="homme">Homme</option>						 
@@ -102,6 +109,16 @@
                                                     </div>
                                                 
                                                     <div class="form-group">
+                                                        <label>Nombre de mois</label>
+                                                        <input type="number"  value="{{old('nbrmois') ?? 1}}" min="1" id="nbrmois" name="nbrmois" class="form-control">
+                                                    </div>
+
+
+
+                                                </div>
+
+                                                <div class ="col-sm-4">
+                                                    <div class="form-group">
                                                         <label>Abonnement</label>
                                                         <select class="form-control" id="abonnement" name="abonnement">
                                                             <option value="">séléctionner un abonnement</option>
@@ -116,6 +133,10 @@
                                                         <input type="date" id="debut"  value="{{Date('Y-m-d')}}" name="debut" class="form-control">
                                                     </div>
 
+                                                    <!-- <div class="form-group">
+                                                        <label>date fin</label>
+                                                        <input id="fin" type="date" value="{{old('fin')}}" name="fin" class="form-control">
+                                                    </div> -->
                                                 </div>
 
                                                 <div class ="col-sm-4">
@@ -123,17 +144,7 @@
                                                         <label>Tarification:</label>
                                                         <input type="number"  name="tarif" value="0" id="tarif" class="form-control">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label>date fin</label>
-                                                        <input id="fin" type="date" value="{{old('fin')}}" name="fin" class="form-control">
-                                                    </div>
-                                                </div>
-
-                                                <div class ="col-sm-4">
-                                                    <div class="form-group">
-                                                        <label>Nombre de mois</label>
-                                                        <input type="number"  value="{{old('nbrmois') ?? 1}}" min="1" id="nbrmois" name="nbrmois" class="form-control">
-                                                    </div>
+                                                
                                                     <div class="form-group">
                                                         <label>Total</label>
                                                         <input type="number" id="total" value="{{old('total')}}" name="total" class="form-control">
@@ -149,7 +160,7 @@
                                                         <input type="number" value="{{old('versement') ?? 0}}" id="versement" name="versement" class="form-control">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>T.T.C : </label>
+                                                        <label>Total Final : </label>
                                                         <input type="number" value="{{old('ttc') ?? 0}}" id="ttc" name="ttc" class="form-control">
                                                     </div>
                                                     
@@ -157,9 +168,15 @@
                                                 </div>
 
                                             </div>
-                                            <div class="col-sm-12">
-                                                <button type="submit" id="valider"  class="btn btn-info btn-block">Valider</button>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <button type="submit" id="valider"  class="btn btn-info btn-block">Valider</button>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button type="reset" class="btn btn-danger btn-block">Annuler</button>
+                                                </div>
                                             </div>
+
                                         </form>
                                     </div>
                                 </div>
@@ -180,6 +197,13 @@ $(document).ready(function() {
         $('#tarif').val(value.tarif)
         $('#total').val($('#nbrmois').val()*$('#tarif').val())
         $('#versement').val($('#nbrmois').val()*$('#tarif').val())
+
+    })
+    $('#remise').on('change',function(){
+        var remise = this.value;
+        var total =  $('#total').val()
+        var ttc = total - remise 
+        $('#ttc').val(ttc)
 
     })
     $('#nbrmois').on('change',function(event){

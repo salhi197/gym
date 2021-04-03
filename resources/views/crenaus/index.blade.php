@@ -54,9 +54,12 @@
                                                 ?>
                                                 <td>
                                                     @foreach($plage as $p)
+                                                    <span class="badge badge-primary">
                                                         {{$p->debut ?? ''}}
                                                             -
-                                                        {{$p->fin ?? ''}}                                                         
+                                                        {{$p->fin ?? ''}}            
+                                                    </span>
+                                             
                                                     @endforeach
                                                 </td>
                                                 <td>

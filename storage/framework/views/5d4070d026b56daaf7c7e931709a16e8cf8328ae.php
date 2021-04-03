@@ -55,10 +55,13 @@
                                                 ?>
                                                 <td>
                                                     <?php $__currentLoopData = $plage; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <span class="badge badge-primary">
                                                         <?php echo e($p->debut ?? ''); ?>
 
                                                             -
-                                                        <?php echo e($p->fin ?? ''); ?>                                                         
+                                                        <?php echo e($p->fin ?? ''); ?>            
+                                                    </span>
+                                             
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </td>
                                                 <td>

@@ -33,12 +33,17 @@
                                                         <input type="text" name="designation" required="" class="form-control">
                                                     </div>
                                                 </div>
-                                                <!-- <div class="col-sm-2">
+                                                <!-- <div class="col-sm-4">
                                                     <div class="form-group">
-                                                        <label>Durée de validité</label>
-                                                        <input type="number" name="duree" value="0" required="" class="form-control">
+                                                        <label>Paramètre</label>
+                                                        <select class="form-control js-example-basic-multiple"" name="settings">
+                                                            @foreach($settings as $setting)
+                                                            <option value="{{$setting}}">{{$setting->determination}}</option>						 
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div> -->
+
                                                 
                                             </div>
                                             <div class="row">
@@ -52,36 +57,15 @@
                             </div>
                         </div>
                     </div>
+
 @endsection
+
+
 @section('scripts')
 <script>
 $(document).ready(function() {
-    var dynamic_form =  $("#dynamic_form").dynamicForm("#dynamic_form","#plus5", "#minus5", {
-        limit:10,
-        formPrefix : "dynamic_form",
-        normalizeFullForm : false
-    });
-
-//    dynamic_form.inject([{p_name: 'Hemant',quantity: '123',remarks: 'testing remark'},{p_name: 'Harshal',quantity: '123',remarks: 'testing remark'}]);
-
-    $("#dynamic_form #minus5").on('click', function(){
-        var initDynamicId = $(this).closest('#dynamic_form').parent().find("[id^='dynamic_form']").length;
-        if (initDynamicId === 2) {
-            $(this).closest('#dynamic_form').next().find('#minus5').hide();
-        }
-        $(this).closest('#dynamic_form').remove();
-    });
-
-    $('form').on('submit', function(event){
-        var values = {};
-        $.each($('form').serializeArray(), function(i, field) {
-            values[field.name] = field.value;
-        });
-        // console.log(values)
-        // event.preventDefault();
-    })    
-})
-
+    $('.js-example-basic-multiple').select2();
+});
 
 </script>
 @endsection

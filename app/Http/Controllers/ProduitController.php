@@ -7,6 +7,7 @@ use App\Wilaya;
 use Carbon\Carbon;
 use Hash;
 use App\Produit;
+use App\Setting;
 use App\Categorie;
 
 use Illuminate\Http\Request;
@@ -29,7 +30,8 @@ class ProduitController extends Controller
     public function create()
     {
         $categories = Categorie::all();
-        return view('produits.create',compact('categories'));
+        $settings = Setting::all();
+        return view('produits.create',compact('categories','settings'));
     }
 
     /**
@@ -43,6 +45,7 @@ class ProduitController extends Controller
         $produit = new Produit();   
         $produit->categorie = $request['categorie'];
         $produit->designation = $request['designation'];
+        $produit->setting= json_encode($request->settings);
         $produit->save();
         return redirect()->route('produit.index')->with('success', 'reservation inséré avec succés ');        
     }

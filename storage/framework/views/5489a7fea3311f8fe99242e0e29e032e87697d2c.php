@@ -48,8 +48,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="nav-item">
             <a href="<?php echo e(route('crenau.index')); ?>" class="nav-link">Crénaux</a>
           </li>
+
           <li class="nav-item">
-            <a href="<?php echo e(route('crenau.index')); ?>" class="nav-link">Rapports</a>
+            <a href="<?php echo e(route('produit.index')); ?>" class="nav-link">Produits</a>
+          </li>
+
+
+          <li class="nav-item">
+            <a href="" class="nav-link">Rapports</a>
           </li>
           <li class="nav-item">
             <a href="<?php echo e(route('setting.index')); ?>" class="nav-link">Paramètres</a>
