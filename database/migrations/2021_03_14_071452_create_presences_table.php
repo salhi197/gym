@@ -6,16 +6,12 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreatePresencesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('presences', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('inscription');
+            $table->integer('inscription')->nullable();
+            $table->string('matricule')->nullable();
             $table->timestamps();
         });
     }

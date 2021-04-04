@@ -9,17 +9,12 @@
                         <h1 class="mt-4"> Tableau de bord </h1>        
                            <div class="card mb-4">
                                 <div class="card-header">
-                                    <a class="btn btn-info" href="{{route('commande.show.create')}}">
-                                        <i class="fas fa-plus"></i>
-                                        Ajouter 
-                                        </a>
                                 </div>  
                         <div class="row">
                         </div>
 
 
                       <div class="card-body">
-                                        <form method="post" action="{{route('commande.search')}}">
                                         @csrf
                                             <div class="form-row">
                                                 <div class="col-md-2">

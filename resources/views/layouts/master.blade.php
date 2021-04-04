@@ -49,9 +49,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="{{route('crenau.index')}}" class="nav-link">Crénaux</a>
           </li>
 
-          <li class="nav-item">
-            <a href="{{route('produit.index')}}" class="nav-link">Produits</a>
+
+<li class="nav-item dropdown">
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
+            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
+              <li><a href="#" class="dropdown-item">Stock</a></li>
+              <li>
+                <a href="#" class="dropdown-item" href="{{route('produit.index')}}">
+                Produits
+                </a>
+              </li>
+              <li>
+                <a href="#" class="dropdown-item" href="{{route('categorie.index')}}">
+                Categories
+                </a>
+              </li>
+
+
+              <!-- Level two dropdown-->
+              <!-- End Level two -->
+            </ul>
           </li>
+
+
 
 
           <li class="nav-item">

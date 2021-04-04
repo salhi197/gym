@@ -35,6 +35,7 @@ Route::group(['prefix' => 'static', 'as' => 'static.'], function () {
     Route::get('/communes/{wilaya}', 'Api\StaticDataController@communes')->name('communes');
 });
 Route::post('/membre/verifier', 'ApiController@verifier');
+Route::post('/insert/presence', 'ApiController@insertPresence');
 
 Route::post('/presense/create', 'ApiController@createPresence');
 

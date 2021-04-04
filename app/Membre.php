@@ -1,9 +1,9 @@
 <?php
 
 namespace App;
-
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-
+use DB;
 class Membre extends Model
 {
     protected $fillable = [
@@ -14,6 +14,7 @@ class Membre extends Model
         'sexe',
         'naissance',
         'photo',
+        'email',
         'matricule',
         'etat'
     ];
@@ -32,31 +33,45 @@ class Membre extends Model
         }
         return false;
     }
+
+    public function getActiveInscription()
+    {
+        $inscription  = Inscription::where('membre',$this->id)->first();
+        return $inscription;
+    }
+
     public function isAuthorised()
     {
-        /***
-         * get inscritpions
-         */
-        $inscription = $this->hasInscription();
-        if($hasInscription){
+        $inscription  = Inscription::where(['membre'=>$this->id,'etat'=>1])->first();
+        // $inscription = Inscription::orderBy('id', 'DESC')->where('membre',$this->id)->limit(1);
+        if ($inscription) {
             $fin = $inscription->fin;
-            $reste =$inscription->reste;
+            $reste = $inscription->reste;
             $current = date('Y-m-d');
             if($current>$fin or $reste==0){
-                $lastpresence = Presence::where('membre',$this->id)->last();
-                $hour=date('H:i');
+                return 0;
+            }else{
+                // $lastpresence = DB::table('presences')->order_by('id', 'desc')->first();
+                $lastpresence = DB::table('presences')
+                ->where('matricule',$this->matricule)
+                ->orderBy('id', 'desc')
+                ->get();
+                $lastpresence = $lastpresence[0];
+                $aftersixhour= date("Y-m-d H:i:s", strtotime($lastpresence->created_at));
+                $hour=date('Y-m-d H:i:s');                
+                return 1;
                 /**
                  * check if last presnce is more then 6 hours
                  */
-                if ($lastpresence-$hour >6) {
+                if ($hour>$aftersixhour) {
                     return 1;
                 }else{
                     return 0;
                 }
             }
-            return 1;
+        }else{
+            return 0;
         }
-        return 0;
     }
     
 }

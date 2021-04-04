@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Presence;
+use App\Abonnement;
 use App\Inscription;
 
 use Carbon\Carbon;
@@ -12,8 +13,9 @@ class InscriptionController extends Controller
 {
     public function index()
     {
+        $abonnements = Abonnement::all();        
         $inscriptions = Inscription::all();        
-        return view('inscriptions.index',compact('inscriptions'));
+        return view('inscriptions.index',compact('inscriptions','abonnements'));
     }
 
     

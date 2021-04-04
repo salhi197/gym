@@ -27,7 +27,7 @@
                                             <tr>
                                                 <th>debut</th>
                                                 <th>fin</th>
-                                                <th>reste</th>
+                                                <th>Nombre seance reste</th>
                                                 <th>nbr seances</th>
                                                 <th>abonnement</th>
                                                 <th>etat</th>
@@ -66,7 +66,6 @@
                                                 <a class="btn btn-danger text-white"  onclick="return confirm('Are you sure?')"  href="{{route('inscription.destroy',['inscription'=>$inscription->id])}}">Supprimer</a>
                                                 </td>
                                             </tr>
-                                                <!-- @include('includes.modals.editInscription',['inscription'=>$inscription]) -->
                                             @endforeach                                            
                                         </tbody>
                                     </table>

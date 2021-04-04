@@ -194,9 +194,16 @@
 $(document).ready(function() {
     $('#abonnement').on('change',function(event){
         var value = JSON.parse(this.value);
+        var remise = $('#remise').val();
+        console.log(ttc)
+
         $('#tarif').val(value.tarif)
         $('#total').val($('#nbrmois').val()*$('#tarif').val())
         $('#versement').val($('#nbrmois').val()*$('#tarif').val())
+        var total =  $('#total').val()
+        console.log(ttc)
+        var ttc = total - remise 
+        $('#ttc').val(ttc)
 
     })
     $('#remise').on('change',function(){
@@ -210,9 +217,15 @@ $(document).ready(function() {
         var value = this.value;
         var debut = new Date($('#debut').val());
         var fin  = debut.setMonth(debut.getMonth()+value); 
+        var remise = $('#remise').val();
         $('#total').val(value*$('#tarif').val())
         $('#versement').val(value*$('#tarif').val())
         $('#fin').val(fin)
+        var total =  $('#total').val()
+        console.log(ttc)
+        var ttc = total - remise 
+        $('#ttc').val(ttc)
+
     })
 
 });

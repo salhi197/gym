@@ -70,10 +70,10 @@
                                                 <div class="form-group" id="dynamic_form">
                                                     <div class="row">
                                                         <div class="col-md-4">
-                                                            <input  name="debut" id="debut" placeholder="Heure Début" class="form-control timepicker debuts">
+                                                            <input  type="time" name="debut" id="debut" placeholder="Heure Début" class="form-control  debuts">
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <input  class="form-control timepicker fins" name="fin" id="fin" placeholder="Heure Fin" >
+                                                            <input  class="form-control  fins" type="time" name="fin" id="fin" placeholder="Heure Fin" >
                                                         </div>
 
                                                         <div class="button-group">
@@ -83,9 +83,15 @@
                                                     </div>
                                                 </div>
 
-                                            <div class="col-sm-12">
-                                                <button type="submit" id="valider"  class="btn btn-info btn-block">Valider</button>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <button type="submit" id="valider"  class="btn btn-info btn-block">Valider</button>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button type="reset" class="btn btn-danger btn-block">Annuler</button>
+                                                </div>
                                             </div>
+
                                         </form>
                                     </div>
                                 </div>
@@ -110,11 +116,11 @@ $(document).ready(function() {
         
     $('.timepicker').timepicker({
         timeFormat: 'h:mm p',
-        interval: 60,
-        minTime: '10',
-        maxTime: '12:00pm',
+        interval: 30,
+        minTime: '6',
+        maxTime: '6:00pm',
         defaultTime: '11',
-        startTime: '10:00',
+        startTime: '5:00',
         dynamic: false,
         dropdown: true,
         scrollbar: true

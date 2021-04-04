@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('page_wrapper')
-    @include('includes.categories')
 @endsection
 
 

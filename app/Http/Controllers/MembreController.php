@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Inscription;
+use Redirect;
+
 use Hash;
 use Carbon\Carbon;
 use App\Http\Requests\StoreProduit;
@@ -41,7 +43,13 @@ class MembreController extends Controller
 
     public function store(Request $request)
     {        
-        dd($request['versement']);
+
+        // $validated = $request->validate([
+        //     'label'=>'required',
+        //     'tarif'=>'required',
+        //     'nbrsemaine'=>'required'
+        // ]);
+
         $membre = new Membre();
         $membre->nom = $request['nom'];
         $membre->matricule = $request['matricule'];
@@ -76,8 +84,10 @@ class MembreController extends Controller
         $inscription->type=$request['type'];
         $fin =  Carbon::parse($request['debut'])->addMonth($request['nbrmois'])->format('Y-m-d');
         $inscription->fin=$fin;
-        $inscription->reste=$request['reste'];
+        
         $inscription->nbsseance=$request['nbrmois']*4*json_decode($request['abonnement'])->nbrsemaine;
+        $inscription->reste=$request['nbsseance'];
+        
         $inscription->membre=$membre->id;
         $inscription->abonnement=json_decode($request['abonnement'])->id;
         $inscription->etat=1;//$request['etat'];

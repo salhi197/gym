@@ -180,9 +180,17 @@ Route::post('/register/livreur', 'Auth\RegisterController@createLivreur')->name(
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::group(['middleware' => 'auth:admin'], function () {
-    Route::view('/admin', 'admin');
-});
+Route::get('/admin', 'HomeController@index')->name('home');
+
 
 Route::view('/rapport', 'rapport');
+
+Route::group(['prefix' => 'categorie', 'as' => 'categorie'], function () {
+    Route::get('/', ['as' => '.index', 'uses' => 'CategorieController@index']);
+    Route::get('/show/create',['as'=>'.show.create', 'uses' => 'CategorieController@create']);
+    Route::post('/create', ['as' => '.create', 'uses' => 'CategorieController@store']);
+    Route::post('/update/{id_categorie}', ['as' => '.update', 'uses' => 'CategorieController@update']);
+    Route::get('/destroy/{id_categorie}', ['as' => '.destroy', 'uses' => 'CategorieController@destroy']);    
+    Route::get('/edit/{id_categorie}', ['as' => '.edit', 'uses' => 'CategorieController@edit']);
+});
 

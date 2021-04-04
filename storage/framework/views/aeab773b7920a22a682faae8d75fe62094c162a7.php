@@ -26,7 +26,7 @@
                                             <tr>
                                                 <th>debut</th>
                                                 <th>fin</th>
-                                                <th>reste</th>
+                                                <th>Nombre seance reste</th>
                                                 <th>nbr seances</th>
                                                 <th>abonnement</th>
                                                 <th>etat</th>
@@ -67,7 +67,6 @@
                                                 <a class="btn btn-danger text-white"  onclick="return confirm('Are you sure?')"  href="<?php echo e(route('inscription.destroy',['inscription'=>$inscription->id])); ?>">Supprimer</a>
                                                 </td>
                                             </tr>
-                                                <!-- <?php echo $__env->make('includes.modals.editInscription',['inscription'=>$inscription], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> -->
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>                                            
                                         </tbody>
                                     </table>
