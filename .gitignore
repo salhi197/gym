@@ -6,7 +6,7 @@
 .idea/
 /storage/framework
 /storage/framework
-/control_acces/node_modules
+/control_acces/node_modules/
 .env.backup
 .phpunit.result.cache
 docker-compose.override.yml

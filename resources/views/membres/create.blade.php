@@ -10,7 +10,21 @@
 
                             <div class="col-lg-12">
                                 <div class="card mt-2">
-                                    <div class="card-header"><h3 class="font-weight-light my-4"> Nouveau Membre  </h3></div>
+                                    <div class="card-header">
+                                        <h3 class="font-weight-light my-4"> Nouveau Membre  </h3>
+                                        <div class="col-sm-4">
+                                            <div class="preview text-center">
+                                                <img class="preview-img" src="{{asset('img/account.png')}}" alt="Preview Image" width="200" height="200" for="UploadedFile"/>
+                                                <div class="browse-button">
+                                                    <i class="fa fa-pencil-alt"></i>
+                                                    <input  type="file" name="UploadedFile" id="UploadedFile"/>
+                                                </div>
+                                                <span class="Error"></span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
                                     <div class="card-body">
                                         <form role="form" action="{{route('membre.store')}}" method="post">
                                         @csrf
@@ -36,9 +50,6 @@
                                                         <label>Téléphone</label>
                                                         <input type="text" value="{{old('telephone')}}" name="telephone" class="form-control">
                                                     </div>
-                                                </div>
-
-                                                <div class ="col-sm-4">
                                                     <div class="form-group">
                                                         <label>Code de Matricule</label>
                                                         <input type="text" value="{{old('matricule')}}" name="matricule" class="form-control">
@@ -72,33 +83,11 @@
                                                         </select>
 
                                                     </div>
-                                                </div>
 
-
-                                                <div class ="col-sm-4">
-                                                    <div class="preview text-center">
-                                                        <img class="preview-img" src="{{asset('img/account.png')}}" alt="Preview Image" width="200" height="200" for="UploadedFile"/>
-                                                        <div class="browse-button">
-                                                            <i class="fa fa-pencil-alt"></i>
-                                                            <input style="" type="file" name="UploadedFile" id="UploadedFile"/>
-                                                        </div>
-                                                        <span class="Error"></span>
-                                                    </div>
 
                                                 </div>
 
-
-                                            </div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="card mt-2">
-                                    <div class="card-header"><h3 class="font-weight-light my-4"> Type d'abonnement  </h3></div>
-                                    <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-4">
+                                                <div class ="col-sm-4 offset-md-4">
                                                     <div class="form-group">
                                                         <label>Type :</label>
                                                         <select class="form-control" name="sexe">
@@ -112,12 +101,6 @@
                                                         <label>Nombre de mois</label>
                                                         <input type="number"  value="{{old('nbrmois') ?? 1}}" min="1" id="nbrmois" name="nbrmois" class="form-control">
                                                     </div>
-
-
-
-                                                </div>
-
-                                                <div class ="col-sm-4">
                                                     <div class="form-group">
                                                         <label>Abonnement</label>
                                                         <select class="form-control" id="abonnement" name="abonnement">
@@ -133,13 +116,17 @@
                                                         <input type="date" id="debut"  value="{{Date('Y-m-d')}}" name="debut" class="form-control">
                                                     </div>
 
+                                                    <div class="form-group">
+                                                        <button type="button" id="today"  class="btn btn-info btn-block">Aujourd'hui</button>
+                                                    </div>
+
                                                     <!-- <div class="form-group">
                                                         <label>date fin</label>
                                                         <input id="fin" type="date" value="{{old('fin')}}" name="fin" class="form-control">
                                                     </div> -->
-                                                </div>
 
-                                                <div class ="col-sm-4">
+
+
                                                     <div class="form-group">
                                                         <label>Tarification:</label>
                                                         <input type="number"  name="tarif" value="0" id="tarif" class="form-control">
@@ -163,23 +150,45 @@
                                                         <label>Total Final : </label>
                                                         <input type="number" value="{{old('ttc') ?? 0}}" id="ttc" name="ttc" class="form-control">
                                                     </div>
-                                                    
+
+
+                                                </div>
+
+
+                                                <div class ="col-sm-4">
 
                                                 </div>
 
                                             </div>
+
                                             <div class="row">
-                                                <div class="col-md-3">
-                                                    <button type="submit" id="valider"  class="btn btn-info btn-block">Valider</button>
+                                                <div class="col-md-2" style="padding:30px;">
+                                                    <button style="padding:30px;" type="submit" id="valider"  class="btn btn-info btn-block">Valider</button>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <button type="reset" class="btn btn-danger btn-block">Annuler</button>
+                                                <div class="col-md-2" style="padding:30px;">
+                                                    <button style="padding:30px;" type="reset" class="btn btn-danger btn-block">Annuler</button>
                                                 </div>
+                                                <div class="col-md-2" style="padding:30px;">
+                                                    <button style="padding:30px;" type="reset" class="btn btn-primary btn-block">Renouvler</button>
+                                                </div>
+                                            </div>
+
+
+                                    </div>
+                                </div>
+
+
+
+                                <!-- <div class="card mt-2">
+                                    <div class="card-header"><h3 class="font-weight-light my-4"> Type d'abonnement  </h3></div>
+                                    <div class="card-body">
+                                            <div class="row">
+
                                             </div>
 
                                         </form>
                                     </div>
-                                </div>
+                                </div> -->
 
 
 
@@ -192,6 +201,17 @@
 @section('scripts')
 <script>
 $(document).ready(function() {
+    $('#today').on('click',function(){
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+        var today = year+ "-" +month+ "-" +day;//+"-"+// + "-" +  +"T00:00";       
+        $("#debut").attr("value", today);
+
+    })
     $('#abonnement').on('change',function(event){
         var value = JSON.parse(this.value);
         var remise = $('#remise').val();

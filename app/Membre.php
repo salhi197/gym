@@ -57,9 +57,9 @@ class Membre extends Model
                 ->orderBy('id', 'desc')
                 ->get();
                 $lastpresence = $lastpresence[0];
-                $aftersixhour= date("Y-m-d H:i:s", strtotime($lastpresence->created_at));
+                $aftersixhour= date("Y-m-d H:i:s", strtotime($lastpresence->created_at." +6 hours"));
                 $hour=date('Y-m-d H:i:s');                
-                return 1;
+
                 /**
                  * check if last presnce is more then 6 hours
                  */

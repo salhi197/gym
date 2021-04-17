@@ -135,6 +135,9 @@ Route::group(['prefix' => 'membre', 'as' => 'membre'], function () {
     Route::get('/state/{id_membre}', ['as' => '.state', 'uses' => 'MembreController@state']); 
     Route::get('/facture/{id_membre}', ['as' => '.facture', 'uses' => 'MembreController@facture']); 
     Route::get('/edit/{id_membre}', ['as' => '.edit', 'uses' => 'MembreController@edit']);
+    Route::get('/plus/{id_membre}', ['as' => '.plus', 'uses' => 'MembreController@plus']);
+    Route::get('/minus/{id_membre}', ['as' => '.minus', 'uses' => 'MembreController@minus']);
+
     Route::post('/update/{membre}', ['as' => '.update', 'uses' => 'MembreController@update']);    
     
 });
@@ -179,6 +182,7 @@ Route::post('/register/admin', 'Auth\RegisterController@createAdmin')->name('reg
 Route::post('/register/livreur', 'Auth\RegisterController@createLivreur')->name('register.Livreur');
 
 
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'HomeController@index')->name('home');
 

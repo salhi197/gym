@@ -52,10 +52,11 @@
                                                 {{$membre->status ?? ''}}</td>                                            
                                                 <td>{{$membre->created_at ?? ''}}</td>                                            
                                                 <td>
-                                                <a class="btn btn-info text-white" href="{{route('membre.edit',['membre'=>$membre->id])}}"><i class="fa fa-edit"></i></a>
-                                                <!-- <a href="{{route('membre.destroy',['membre'=>$membre->id])}}" onclick="return confirm('Etes vous sure ?')"  class="btn btn-danger text-white"><i class="fa fa-window-close"></i></a> -->
-                                                <a class="btn btn-info text-white" href="{{route('membre.inscriptions',['membre'=>$membre->id])}}">Inscriptions</a>
-                                                <a class="btn btn-primary text-white" href="{{route('membre.facture',['membre'=>$membre->id])}}">Facture</a>
+                                                    <a class="btn btn-info text-white" href="{{route('membre.edit',['membre'=>$membre->id])}}"><i class="fa fa-edit"></i></a>
+                                                    <!-- <a href="{{route('membre.destroy',['membre'=>$membre->id])}}" onclick="return confirm('Etes vous sure ?')"  class="btn btn-danger text-white"><i class="fa fa-window-close"></i></a> -->
+                                                    <a class="btn btn-info text-white" href="{{route('membre.inscriptions',['membre'=>$membre->id])}}">Inscriptions</a>
+                                                    <a class="btn btn-primary text-white" href="{{route('membre.facture',['membre'=>$membre->id])}}">Facture</a>
+                                                    <a class="btn btn-primary text-white" href="{{route('membre.edit',['membre'=>$membre->id])}}">Modifier</a>
                                                 </td>
                                             </tr>
 

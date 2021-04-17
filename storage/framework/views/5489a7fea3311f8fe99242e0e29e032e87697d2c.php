@@ -142,7 +142,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Main content -->
     <div class="content">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
           <div class="col-lg-12">
             <?php echo $__env->yieldContent('content'); ?>

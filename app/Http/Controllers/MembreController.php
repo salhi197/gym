@@ -10,9 +10,8 @@ use Carbon\Carbon;
 use App\Http\Requests\StoreProduit;
 use App\Membre;
 use App\Template;
-
+use Illuminate\Support\Facades\URL;
 use Dompdf\Dompdf;
-
 use App\Abonnement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -63,13 +62,13 @@ class MembreController extends Controller
         $membre->sang = $request['sang'];
         // $membre->matricule = $request['matricule'];
         // $membre->etat = $request['etat'];                
-        if($request->file('image')){
-            $file = $request->file('image');
+        if($request->file('UploadedFile')){
+            $file = $request->file('UploadedFile');
             $image = $file->store(
-                'categories/images',
+                'membres/images',
                 'public'
             );
-            $membre->image = $image;     
+            $membre->photo= URL::to('/').'/storage/app/public/'.$image;     
         }
         try {
             $membre->save();

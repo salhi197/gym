@@ -6,13 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
-
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "@serialport/parser-readline": "^8.0.6",
     "node-fetch": "^2.6.1",
+    "open": "^8.0.6",
     "serialport": "^8.0.7"
   }
 }

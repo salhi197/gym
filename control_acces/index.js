@@ -1,6 +1,7 @@
 // Import dependencies
 const SerialPort = require("serialport");
 const Readline = require("@serialport/parser-readline");
+const open = require('open');
 
 // Defining the serial port
 const port = new SerialPort("COM11", {
@@ -15,6 +16,8 @@ port.pipe(parser);
 
 parser.on("data", function(line){
     console.log(line)
+    open('http://127.0.0.1:8000/membre/edit/3');
+
     var matricule = line
     fetch('http://localhost:8000/api/membre/verifier', {
         method: 'post',
@@ -39,15 +42,11 @@ parser.on("data", function(line){
               },
               body: JSON.stringify({matricule:matricule})
             }).then(res =>res.json())
-            .then(res => {
-              console.log(res)
-            })
-            
           }else{
             console.log("non autorisé")
           }
         }else{
-          console.log(res)
+          console.log("non autorisé")
         }
 
         })

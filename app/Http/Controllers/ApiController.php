@@ -38,6 +38,7 @@ class ApiController extends Controller
 
         if($membre){
             $reponse = $membre->isAuthorised();
+            
             return response()->json(['reponse' => $reponse]);
         }else{
             return response()->json(['reponse' => -1]);
